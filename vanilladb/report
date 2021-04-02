@@ -1,0 +1,454 @@
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.server.StartUp main
+INFO: initing...
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.util.PropertiesLoader getPropertyAsString
+WARNING: can't find property: org.vanilladb.core.storage.file.FileMgr.DB_FILES_DIR, using default value: C:\Users\quant
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.util.PropertiesLoader getPropertyAsString
+WARNING: can't find property: org.vanilladb.core.storage.file.FileMgr.LOG_FILES_DIR, using default value: C:\Users\quant
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.storage.file.FileMgr <init>
+INFO: block size 4096
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 0
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.server.VanillaDb init
+INFO: recovering existing database...
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.server.VanillaDb init
+INFO: the database has been recovered to a consistent state.
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.storage.metadata.statistics.StatMgr <init>
+INFO: building statistics...
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.storage.metadata.statistics.StatMgr <init>
+INFO: the statistics is up to date.
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 0 committed
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 1
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 1 committed
+Jul 22, 2020 3:39:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 3:39:32 PM org.vanilladb.core.server.StartUp main
+INFO: database server ready
+Jul 22, 2020 3:44:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 3:44:31 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 2
+Jul 22, 2020 3:44:31 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 2 committed
+Jul 22, 2020 3:44:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 3:49:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 3:49:31 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 3
+Jul 22, 2020 3:49:31 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 3 committed
+Jul 22, 2020 3:49:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 3:54:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 3:54:31 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 4
+Jul 22, 2020 3:54:31 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 4 committed
+Jul 22, 2020 3:54:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 3:59:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 3:59:31 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 5
+Jul 22, 2020 3:59:31 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 5 committed
+Jul 22, 2020 3:59:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 4:04:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 4:04:31 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 6
+Jul 22, 2020 4:04:31 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 6 committed
+Jul 22, 2020 4:04:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 4:09:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 4:09:31 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 7
+Jul 22, 2020 4:09:31 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 7 committed
+Jul 22, 2020 4:09:31 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 4:29:13 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 4:29:13 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 8
+Jul 22, 2020 4:29:13 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 8 committed
+Jul 22, 2020 4:29:13 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 6:36:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 6:36:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 9
+Jul 22, 2020 6:36:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 9 committed
+Jul 22, 2020 6:36:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 6:41:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 6:41:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 10
+Jul 22, 2020 6:41:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 10 committed
+Jul 22, 2020 6:41:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 6:46:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 6:46:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 11
+Jul 22, 2020 6:46:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 11 committed
+Jul 22, 2020 6:46:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 6:51:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 6:51:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 12
+Jul 22, 2020 6:51:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 12 committed
+Jul 22, 2020 6:51:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 6:56:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 6:56:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 13
+Jul 22, 2020 6:56:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 13 committed
+Jul 22, 2020 6:56:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 7:01:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 7:01:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 14
+Jul 22, 2020 7:01:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 14 committed
+Jul 22, 2020 7:01:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 7:06:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 7:06:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 15
+Jul 22, 2020 7:06:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 15 committed
+Jul 22, 2020 7:06:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 7:11:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 7:11:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 16
+Jul 22, 2020 7:11:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 16 committed
+Jul 22, 2020 7:11:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 7:16:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 7:16:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 17
+Jul 22, 2020 7:16:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 17 committed
+Jul 22, 2020 7:16:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 7:21:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 7:21:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 18
+Jul 22, 2020 7:21:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 18 committed
+Jul 22, 2020 7:21:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 7:26:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 7:26:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 19
+Jul 22, 2020 7:26:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 19 committed
+Jul 22, 2020 7:26:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 7:31:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 7:31:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 20
+Jul 22, 2020 7:31:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 20 committed
+Jul 22, 2020 7:31:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 7:36:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 7:36:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 21
+Jul 22, 2020 7:36:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 21 committed
+Jul 22, 2020 7:36:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 7:41:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 7:41:34 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 22
+Jul 22, 2020 7:41:34 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 22 committed
+Jul 22, 2020 7:41:34 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 7:56:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 7:56:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 23
+Jul 22, 2020 7:56:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 23 committed
+Jul 22, 2020 7:56:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:01:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:01:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 24
+Jul 22, 2020 8:01:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 24 committed
+Jul 22, 2020 8:01:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:06:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:06:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 25
+Jul 22, 2020 8:06:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 25 committed
+Jul 22, 2020 8:06:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:11:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:11:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 26
+Jul 22, 2020 8:11:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 26 committed
+Jul 22, 2020 8:11:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:16:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:16:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 27
+Jul 22, 2020 8:16:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 27 committed
+Jul 22, 2020 8:16:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:21:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:21:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 28
+Jul 22, 2020 8:21:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 28 committed
+Jul 22, 2020 8:21:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:26:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:26:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 29
+Jul 22, 2020 8:26:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 29 committed
+Jul 22, 2020 8:26:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:31:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:31:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 30
+Jul 22, 2020 8:31:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 30 committed
+Jul 22, 2020 8:31:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:36:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:36:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 31
+Jul 22, 2020 8:36:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 31 committed
+Jul 22, 2020 8:36:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:41:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:41:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 32
+Jul 22, 2020 8:41:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 32 committed
+Jul 22, 2020 8:41:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:46:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:46:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 33
+Jul 22, 2020 8:46:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 33 committed
+Jul 22, 2020 8:46:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:51:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:51:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 34
+Jul 22, 2020 8:51:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 34 committed
+Jul 22, 2020 8:51:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 8:56:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 8:56:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 35
+Jul 22, 2020 8:56:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 35 committed
+Jul 22, 2020 8:56:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:01:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:01:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 36
+Jul 22, 2020 9:01:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 36 committed
+Jul 22, 2020 9:01:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:06:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:06:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 37
+Jul 22, 2020 9:06:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 37 committed
+Jul 22, 2020 9:06:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:11:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:11:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 38
+Jul 22, 2020 9:11:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 38 committed
+Jul 22, 2020 9:11:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:16:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:16:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 39
+Jul 22, 2020 9:16:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 39 committed
+Jul 22, 2020 9:16:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:21:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:21:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 40
+Jul 22, 2020 9:21:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 40 committed
+Jul 22, 2020 9:21:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:26:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:26:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 41
+Jul 22, 2020 9:26:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 41 committed
+Jul 22, 2020 9:26:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:31:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:31:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 42
+Jul 22, 2020 9:31:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 42 committed
+Jul 22, 2020 9:31:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:36:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:36:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 43
+Jul 22, 2020 9:36:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 43 committed
+Jul 22, 2020 9:36:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:41:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:41:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 44
+Jul 22, 2020 9:41:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 44 committed
+Jul 22, 2020 9:41:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:46:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:46:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 45
+Jul 22, 2020 9:46:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 45 committed
+Jul 22, 2020 9:46:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:51:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:51:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 46
+Jul 22, 2020 9:51:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 46 committed
+Jul 22, 2020 9:51:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 9:56:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 9:56:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 47
+Jul 22, 2020 9:56:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 47 committed
+Jul 22, 2020 9:56:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 10:01:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 10:01:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 48
+Jul 22, 2020 10:01:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 48 committed
+Jul 22, 2020 10:01:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 10:06:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 10:06:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 49
+Jul 22, 2020 10:06:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 49 committed
+Jul 22, 2020 10:06:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 10:11:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 10:11:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 50
+Jul 22, 2020 10:11:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 50 committed
+Jul 22, 2020 10:11:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 10:16:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 10:16:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 51
+Jul 22, 2020 10:16:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 51 committed
+Jul 22, 2020 10:16:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 10:21:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 10:21:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 52
+Jul 22, 2020 10:21:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 52 committed
+Jul 22, 2020 10:21:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 10:26:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 10:26:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 53
+Jul 22, 2020 10:26:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 53 committed
+Jul 22, 2020 10:26:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created
+Jul 22, 2020 10:31:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: Start creating checkpoint
+Jul 22, 2020 10:31:59 PM org.vanilladb.core.storage.tx.TransactionMgr createTransaction
+FINE: new transaction: 54
+Jul 22, 2020 10:31:59 PM org.vanilladb.core.storage.tx.Transaction commit
+FINE: transaction 54 committed
+Jul 22, 2020 10:31:59 PM org.vanilladb.core.storage.tx.recovery.CheckpointTask createCheckpoint
+INFO: A checkpoint created

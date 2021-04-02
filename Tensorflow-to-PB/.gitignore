@@ -1,0 +1,5 @@
+*.iml
+java_code/out
+java_code/.gradle
+*.iws
+*.ipr

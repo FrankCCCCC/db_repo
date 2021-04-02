@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project elasqlbench with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/vanilla_full"/>
+    <property name="dir.jarfile" value="${dir.buildfile}/jar/again"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/server.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="org.elasql.bench.server.StartUp"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ junit-4.9.jar hamcrest-core-1.1.jar jaydio-0.1.jar jna-4.0.0.jar log4j-1.2.17.jar core-4.1.2-vanilladb.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="${dir.workspace}/elasqlbench/target/test-classes"/>
+            <fileset dir="${dir.workspace}/elasqlbench/target/classes"/>
+            <zipfileset dir="C:/Users/quant/.m2/repository/junit/junit/4.9" includes="junit-4.9.jar"/>
+            <zipfileset dir="C:/Users/quant/.m2/repository/org/hamcrest/hamcrest-core/1.1" includes="hamcrest-core-1.1.jar"/>
+            <fileset dir="${dir.workspace}/vanillabench/target/classes"/>
+            <fileset dir="${dir.workspace}/vanillacore/target/classes"/>
+            <zipfileset dir="C:/Users/quant/.m2/repository/net/smacke/jaydio/0.1" includes="jaydio-0.1.jar"/>
+            <zipfileset dir="C:/Users/quant/.m2/repository/net/java/dev/jna/jna/4.0.0" includes="jna-4.0.0.jar"/>
+            <fileset dir="${dir.workspace}/elasql/target/classes"/>
+            <fileset dir="${dir.workspace}/vanillacomm/target/classes"/>
+            <zipfileset dir="C:/Users/quant/.m2/repository/log4j/log4j/1.2.17" includes="log4j-1.2.17.jar"/>
+            <zipfileset dir="C:/Users/quant/.m2/repository/net/sf/appia/core/4.1.2-vanilladb" includes="core-4.1.2-vanilladb.jar"/>
+        </jar>
+    </target>
+</project>

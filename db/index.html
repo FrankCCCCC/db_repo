@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CS 471000 Introduction to Database Systems</title>
+        <meta name="Description" content="Implementation, architectural design, and trade-offs.">
+        <meta name="author" content="Shan-Hung Wu">
+        <script src="https://use.fontawesome.com/0bc11e7eba.js"></script>
+        <!-- Facebook Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="CS 471000 Introduction to Database Systems">
+        <meta property="og:title" content="CS 471000 Introduction to Database Systems" />
+        <meta property="og:url" content="http://datalab-lsml.appspot.com/" />
+        <meta property="og:description" content="Implementation, architectural design, and trade-offs." />
+        <meta property="og:image" content="http://www.cs.nthu.edu.tw/~shwu/images/og-image.jpg" />
+        <link rel="shortcut icon" href="images/nthu.png" />
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/main.css" />
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lsml-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a id="nav~~shwu" class="navbar-brand" href="http://www.cs.nthu.edu.tw/~shwu/">Shan-Hung Wu</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="lsml-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a id="nav~~description" href="#description">Description</a>
+                        </li>
+                        <li>
+                            <a id="nav~~announcement" href="#announcement">Announcement</a>
+                        </li>
+                        <li class="dropdown">
+                            <a id="nav~~curriculum" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Curriculum <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a id="nav~~lecture00" href="#lecture00" alt="">00. Introduction</a></li>
+                                <li><a id="nav~~lecture01" href="#lecture01" alt="">01. Using a DBMS</a></li>
+                                <li><a id="nav~~lecture02" href="#lecture02" alt="">02. Data Modeling</a></li>
+                                <li><a id="nav~~lecture03" href="#lecture03" alt="">03. Architecture and Interfaces</a></li>
+                                <li><a id="nav~~lecture04" href="#lecture04" alt="">04. Server and Threads</a></li>
+                                <li><a id="nav~~lecture05" href="#lecture05" alt="">05. Query Processing</a></li>
+                                <li><a id="nav~~lecture06" href="#lecture06" alt="">06. Data Access and File Management</a></li>
+                                <li><a id="nav~~lecture07" href="#lecture07" alt="">07. Memory Management</a></li>
+                                <li><a id="nav~~lecture08" href="#lecture08" alt="">08. Record Management</a></li>
+                                <li><a id="nav~~lecture09" href="#lecture09" alt="">09. Transaction Management</a></li>
+                                <li><a id="nav~~lecture10" href="#lecture10" alt="">10. Transaction Recovery</a></li>
+                                <li><a id="nav~~lecture10" href="#lecture11" alt="">11. Indexing</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a id="nav~~resources" href="#resources">Resources</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+        <!-- Full width image header with portrait -->
+        <header class="header image-bg-header">
+            <div class="header-content header-text">
+                <h2>CS 471000 Introduction to Database Systems</h2>
+                <h4>Implementation, architectural design, and trade-offs.</h4>
+            </div>
+        </header>
+        <!-- Content Sections -->
+        <section id="description">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                        <h1 class="section-heading">Description</h1>
+                        <p>This course provides an overview of the current database
+                            management systems in the cloud, and explains how they are different
+                            from traditional database systems. The goal is to get students
+                            familiar with some well-known implementations like NoSQL databases,
+                            Google BigTable, Google MegaStore, and Google Spanner etc., and more
+                            importantly, to help students make better decisions on the design
+                            tradeoffs when configuring/building their own database systems given
+                            a particular set of target applications (tenants) in mind.
+                        </p>
+                        <p>Proper understanding of Java/OOP programming and data
+                            structure is required.
+                        </p>
+                        <h4>Instructor</h4>
+                        <div class="float-container">
+                            <div class="float-item">
+                                <img class="img-portrait" src="./images/portrait-2011-square.jpg" alt="">
+                                <p class="text-center"><a id="description~~shwu" href="http://www.cs.nthu.edu.tw/~shwu/" target="_blank">Shan-Hung Wu<br/>吳尚鴻</a></p>
+                            </div>
+                            <br class="clearfloat">
+                        </div>
+                        <!-- float-container -->
+                        <h4>Teaching Assistants</h4>
+                        <div class="float-container">
+                            <div class="float-item">
+                                <img class="img-portrait" src="images/ta/pinyuwang.jpg" alt="">
+                                <p class="text-center"><a id="description~~pywang" href="mailto:pywang@datalab.cs.nthu.edu.tw">Ping-Yu Wang<br/>王平郁*</a>
+                                </p>
+                            </div>
+                            <div class="float-item">
+                                <img class="img-portrait" src="images/ta/slmt.jpeg" alt="">
+                                <p class="text-center"><a id="description~~slmt" href="mailto:yslin@datalab.cs.nthu.edu.tw">Yu-Shan Lin<br/>林玉山</a>
+                                </p>
+                            </div>
+                            
+                            <br class="clearfloat">
+                            <h5>*main contact</h5>
+                        </div>
+                        <!-- float-container -->
+                    </div>
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-sm-6 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-2">
+                        <h4>Time &amp; Location</h4>
+                        <ul>
+                            <li>Lab: Mon. 15:30-17:20 at Delta 106</li>
+                            <li>Lecture: Thur. 14:20-15:10 at Delta 106</li>
+                            <li>Office hour: Thur. 15:30-17:20 at Delta 723</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-5 col-lg-4">
+                        <h4>Grading Policy</h4>
+                        <ul>
+                            <li>Assignments (x5): 50%</li>
+                            <li>Quiz: 15%</li>
+                            <li>Midterm exam: 15%</li>
+                            <li>Final project : 20%</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                        <h4>Prerequisits</h4>
+                        <p>This course is intended for senior undergraduate and junior graduate students who understand
+                        <ul>
+                            <li>OOP Programming,</li>
+                            <li>Multi-threaded Programming,</li>
+                            <li>Data Structure, and</li>
+                            <li>Version Control.</li>
+                        </ul>
+                        We use Java as the main programming language throughout the course. Although not required, background knowledge about operating system will be helpful.
+                        </p>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div id="announcement" class="row anchor">
+                    <div class="alert alert-success col-sm-offset-0 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                        <h1 class="section-heading">Announcement</h1>
+
+                        <!-- <ul>
+                            <li>
+                                <p> - <a id="announcement~~lecture00" href="#lecture00" alt="">0. Introduction</a>: slides announced</p>
+                            </li>                   
+                        </ul> -->
+                        
+                        <!-- Put overflowed announcement here -->
+                        <!-- <div id="announcement-more" class="collapse">
+                            <ul>
+                                <li>
+                                    <p>2019/02/18 - <a id="announcement~~lecture00" href="#lecture00" alt="">0. Introduction</a>: slides announced</p>
+                                </li>   
+                            </ul>
+                        </div>
+                        <p class="text-right">
+                            <button id="announcement~~more" class="btn btn-success" data-toggle="collapse" data-target="#announcement-more"><span class="glyphicon glyphicon-list"></span> More</button>
+                        </p> -->
+
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </section>
+        <section id="curriculum">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                        <h1 class="section-heading">Curriculum</h1>
+                        <p>If you have any feedback, feel free to contact: <span class="text-primary">shwu [AT] cs.nthu.edu.tw</span></p>
+
+                        <h4 id="distance_learning" class="anchor">Distance Learning</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Discord</h4>
+                            <blockquote>Use Discord to ask questions</blockquote>
+                            <p class="text-right">
+                                <a id="distance_learning~~slides" href="labs/discord_tutorial.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> DB-2020 Playlist</h4>
+                            <blockquote>Labs</blockquote>
+                            <p class="text-right">
+                                <a id="playlist" href="https://www.youtube.com/playlist?list=PLLkrsdk1eqh0kN4_OBPDGzEO74Gsyzac_" target="_blank" class="btn btn-danger"><span class="fa fa-youtube-play" aria-hidden="true"></span> Playlist</a>
+                            </p>
+                        </div>
+
+                        <h4 id="lecture00" class="anchor">Lecture 00</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Introduction</h4>
+                            <blockquote>What's Database? | About This Course... | FAQ</blockquote>
+                            <p class="text-right">
+                                <a id="lecture00~~slides" href="slides/00_Introduction.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+                        </div>
+
+                        <h4 id="lecture01" class="anchor">Lecture 01</h4>
+                        <div class="well">
+
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Using a DBMS</h4>
+                            <blockquote>Main Features of a DBMS | Data Models </blockquote>
+                            <p class="text-right">
+                                <a id="lecture01~~slides" href="slides/01_Using_DBMS.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> SQL Queries</h4>
+                            <blockquote>SQL Queries</blockquote>
+                            <p class="text-right">
+                                <a id="lecture01~~lab" href="slides/01_SQL_Queries.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-wrench"></span> General Rules For Assignments</h4>
+                            <blockquote>The announcement the general rules for the assignments in this course and the introduction to the platform we use to manage assignments.</blockquote>
+                            <p class="text-right">
+                                <a id="lecture01~~lab" href="labs/1_1_general_rules_for_assignments.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-wrench"></span> Introduction to Git</h4>
+                            <blockquote>This lab guides you through the main idea of version control systems and the basic usage of Git.</blockquote>
+                            <p class="text-right">
+                                <a id="lecture01~~lab" href="labs/1_2_Introduction_To_Git.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                        </div>
+
+                        <h4 id="lecture02" class="anchor">Lecture 02</h4>
+                        <div class="well">
+
+                            <h4><span class="glyphicon glyphicon-wrench"></span> Using VanillaDB</h4>
+                            <blockquote>Basic tutorial of VanillaDB</blockquote>
+                            <p class="text-right">
+                                <a id="lecture02~~lab" href="labs/2_1_Using_VanillaDB.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Java Concurrency</h4>
+                            <blockquote>Assigned Readings &amp; Java Concurrency</blockquote>
+                            <p class="text-right">
+                                <a id="lecture02~~slides" href="slides/02-2_Java_Concurrency.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Data Modeling</h4>
+                            <blockquote>ER  &amp; Relational Models | Weak Entities | Functional Dependencies | Normal Forms</blockquote>
+                            <p class="text-right">
+                                <a id="lecture02~~slides" href="slides/02-1_Data_Modeling.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-pencil"></span> Assignment 1</h4>
+                            <blockquote>Given some scenario, design the ER model.</blockquote>
+                            <p class="text-right">
+                                
+                                <a id="lecture02~~ass1" href="https://shwu10.cs.nthu.edu.tw/courses/databases/2020-spring/db20-assignment-1" target="_blank" class="btn btn-primary"><span class="fa fa-gitlab" aria-hidden="true"></span> GitLab</a>
+                            </p>
+
+                        </div>
+
+                        <h4 id="lecture03" class="anchor">Lecture 03</h4>
+                        <div class="well">
+
+							<h4><span class="glyphicon glyphicon-blackboard"></span> Architecture and Interfaces</h4>
+                            <blockquote>Architecture Overview | SQL | JDBC | Native Interface | RecordFile | MetaData</blockquote>
+                            <p class="text-right">
+                                <a id="lecture03~~video" href="https://www.youtube.com/playlist?list=PLlPcwHqLqJDmocucOgK8VjJf9N5dC8srP" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture03~~slides" href="slides/03_Architecture_and_Interfaces.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-wrench"></span> Introducing Benchmark Project</h4>
+                            <blockquote>This lab guides you through the Benchmark Project</blockquote>
+                            <p class="text-right">
+                                <a id="lecture03~~lab" href="labs/3_1_Introducing_Benchmark_Project.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                                <a id="lecture03~~ass2" href="https://shwu10.cs.nthu.edu.tw/courses/databases/2020-spring/vanilladb" target="_blank" class="btn btn-primary"><span class="fa fa-gitlab" aria-hidden="true"></span> GitLab</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-pencil"></span> Assignment 2</h4>
+                            <blockquote>Implement JDBC version and Stored Procedures version of Read/Write transaction in VanillaDB.</blockquote>
+                            <p class="text-right">
+                                <a id="lecture03~~ass2" href="https://shwu10.cs.nthu.edu.tw/courses/databases/2020-spring/db20-assignment-2" target="_blank" class="btn btn-primary"><span class="fa fa-gitlab" aria-hidden="true"></span> GitLab</a>
+                            </p>
+                            
+                        </div>
+
+                        <h4 id="lecture04" class="anchor">Lecture 04</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Server and Threads</h4>
+                            <blockquote>Introduction | Threads Processes | Supporting Concurrent Clients | Embedded Clients vs. Remote Clients | RMI | JDBC Implementation</blockquote>
+                            <p class="text-right">
+                                <a id="lecture04~~video" href="https://www.youtube.com/playlist?list=PLlPcwHqLqJDl0TtAOV5UMDoYkSF9nXkwg" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture04~~slides" href="slides/04_Server_and_Threads.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+                            <h4><span class="glyphicon glyphicon-wrench"></span> VanillaCore Walkthrough Part 1</h4>
+                            <blockquote>This lab guides you through the VanillaCore. (Server, Remote Access, Utilities)</blockquote>
+                            <p class="text-right">
+                                <a id="lecture04~~lab" href="labs/4_1_VanillaCore_Walkthrough_Part_1.pdf" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+                            
+                        </div>
+
+                        <h4 id="lecture05" class="anchor">Lecture 05</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Query Processing</h4>
+                            <blockquote>Overview | Parsing &amp; Verification | Parser &amp; SQL Data | Predicates | Predicates | Scans | Plans | Assignment</blockquote>
+                            <p class="text-right">
+                                <a id="lecture05~~video" href="https://www.youtube.com/playlist?list=PLlPcwHqLqJDl8YiNZ7fCAnnmg5EveRuBM" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture05~~slides" href="slides/05_Query_Processing.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-pencil"></span> Assignment 3</h4>
+                            <blockquote>Implement Explain SQL operation in VanillaDB.</blockquote>
+                            <p class="text-right">
+                                <a id="lecture05~~" href="https://shwu10.cs.nthu.edu.tw/courses/databases/2020-spring/db20-assignment-3" target="_blank" class="btn btn-primary"><span class="fa fa-gitlab" aria-hidden="true"></span> GitLab</a>
+                                <a id="lecture05~~" href="labs/2020_Assignment3.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-wrench"></span> Assignment 2 Solution</h4>
+                            <blockquote> Explain Assignment 2 </blockquote>
+                            <p class="text-right">
+                                <a id="lecture05~~lab" href="labs/2020_Assignment2_Sol.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                        </div>
+
+                        <h4 id="lecture06" class="anchor">Lecture 06</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Data Access and File Management</h4>
+                            <blockquote>Storage Engine | I/O Interfaces | Compromised File Management | Implementation: Page &amp; FileMgr </blockquote>
+                            <p class="text-right">
+                                <a id="lecture06~~video" href="https://www.youtube.com/playlist?list=PLlPcwHqLqJDnO9gNCMwb0cL2JMjgJBISw" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture06~~slides" href="slides/06_Data_Access_and_File_Management.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+                            
+                        </div>
+
+                        <h4 id="lecture07" class="anchor">Lecture 07</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Memory Management</h4>
+                            <blockquote>Buffer Pools &amp; Pinning | Buffer Replacement | Pool Size &amp; Deadlock Handling | ACID &amp; Logging | Caching Logs </blockquote>
+                            <p class="text-right">
+                                <a id="lecture07~~video" href="https://www.youtube.com/playlist?list=PLlPcwHqLqJDm6oPKa3iOowG0U71T2-_Vw" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture07~~slides" href="slides/07_Memory_Management.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-wrench"></span> VanillaCore Walkthrough Part 2</h4>
+                            <blockquote>This lab guides you through the VanillaCore (File Access, Memory Management).</blockquote>
+                            <p class="text-right">
+                                <a id="lecture05~~lab" href="labs/7_1_VanillaCore_Walkthrough_Part_2.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-pencil"></span> Assignment 4</h4>
+                            <blockquote>Optimize file and buffer modules of VanillaCore.</blockquote>
+                            <p class="text-right">
+                                <a id="lecture07~~ass4" href="https://shwu10.cs.nthu.edu.tw/courses/databases/2020-spring/db20-assignment-4" class="btn btn-primary"><span class="fa fa-gitlab" aria-hidden="true"></span> GitLab</a>
+                            </p>
+                        </div>
+                        
+                        <h4 id="lecture08" class="anchor">Lecture 08</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Record Management</h4>
+                            <blockquote>Record Management | Design Considerations for Record Manager | The VanillaCore Record Manager </blockquote>
+                            <p class="text-right">
+                                <a id="lecture08~~video" href="https://www.youtube.com/playlist?list=PLlPcwHqLqJDk_irw_-DvFeXFVIRZlcA0F" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture08~~slides" href="slides/08_Record_Management.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-wrench"></span> Introduction to Benchmarks</h4>
+                            <blockquote> Explain Micro & TPCC</blockquote>
+                            <p class="text-right">
+                                <a id="lecture08~~lab" href="labs/10_2_The_Benchmarks.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-wrench"></span> Benchmarking with scripts</h4>
+                            <blockquote> Benchmarking with scripts</blockquote>
+                            <p class="text-right">
+                                <a id="lecture08~~lab" href="labs/10_3_Benchmarking_with_Scripts.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-wrench"></span> Assignment 3 solutions</h4>
+                            <blockquote> Assignment 3 solutions</blockquote>
+                            <p class="text-right">
+                                <a id="lecture08~~lab" href="labs/10_1_Assignment3_Sol_Explain.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-wrench"></span> VanillaCore Walkthrough Part 3</h4>
+                            <blockquote>This lab guides you through the VanillaCore. (Record)</blockquote>
+                            <p class="text-right">
+                                <a id="lecture08~~lab" href="labs/11_1_VanillaCore_Walkthrough_Part_3.pdf" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+                        </div>
+                        
+                        <h4 id="lecture09" class="anchor">Lecture 09</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Transaction Management(I) - Concurrency Control</h4>
+                            <blockquote>Overview of Transaction API | Schedules | Anomalies | 2PL &amp; S2PL | Deadlock Handling | Assignment | Multi-Granularity Locking | Phantoms | Isolation Levels | Meta Structure | CC in VanillaCore </blockquote>
+                            <p class="text-right">
+                                <a id="lecture09~~video" href="https://www.youtube.com/playlist?list=PLlPcwHqLqJDlS10vIwJmibswbWUhvrigE" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture09~~slides" href="slides/09_Transaction_Concurrency.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-wrench"></span> Assignment 4 Solution</h4>
+                            <blockquote> Explain Assignment 4 </blockquote>
+                            <p class="text-right">
+                                <a id="lecture05~~lab" href="labs/10_1_Buffer_File_Optimization.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+                            <h4><span class="glyphicon glyphicon-pencil"></span> Assignment 5</h4>
+                            <blockquote>Implement two version two phase locking protocol.</blockquote>
+                            <p class="text-right">
+                                <a id="lecture09~~ass5" href="https://shwu10.cs.nthu.edu.tw/courses/databases/2020-spring/db20-assignment-5" class="btn btn-primary"><span class="fa fa-gitlab" aria-hidden="true"></span> GitLab</a>
+                                <a id="lecture09~~slides" href="labs/assignment5-intro.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+                        </div>
+
+                        <h4 id="lecture10" class="anchor">Lecture 10</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Transaction Management Part II: Recovery</h4>
+                            <blockquote>Recap: WAL | Physical Logging &amp; Tx Rollbacks | Undo Recovery | Undo-Redo Recovery | Repeated Failures | Checkpointing</blockquote>
+                            <p class="text-right">
+                                <a id="lecture10~~video" href="https://www.youtube.com/playlist?list=PLlPcwHqLqJDkCOe-kJ7Zd7cXl1QoelHf-" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture10~~slides" href="slides/10_Transaction_Recovery.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+                        </div>
+
+                        <h4 id="lecture11" class="anchor">Lecture 11</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Indexing </h4>
+                            <blockquote>Hash Indexing | B-Tree Indexing | Index Locking</blockquote>
+                            <p class="text-right">
+                                <a id="lecture11~~video" href="https://www.youtube.com/watch?v=JXoKDIsbGQw&list=PLlPcwHqLqJDkrsQo6g23wES_wyxLD1UWS" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture11~~slides" href="slides/11_Indexing.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Final Project </h4>
+                            <blockquote>Introduction of final project</blockquote>
+                            <p class="text-right">
+                                <a id="lecture11~~final" href="https://shwu10.cs.nthu.edu.tw/courses/databases/2020-spring/db20-final-project" class="btn btn-primary"><span class="fa fa-gitlab" aria-hidden="true"></span> GitLab</a>
+                                <a id="Introduction" href="labs/introduction-final-project.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Introduction</a>
+                            </p>
+                            
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Getting started with VanillaComm</h4>
+                            <blockquote>Introduction to VanillaComm API</blockquote>
+                            <p class="text-right">
+                                <a id="comm~~video" href="https://youtu.be/Vlti_tJO54A" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture11~~comm" href="labs/15_2_VanillaComm_API.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+                        </div>
+
+                        <h4 id="lecture12" class="anchor">Lecture 12</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Query Optimization </h4>
+                            <blockquote>Cost Estimation | Histogram</blockquote>
+                            <p class="text-right">
+                                <a id="lecture11~~video" href="https://www.youtube.com/playlist?list=PLlPcwHqLqJDkNpLHP43ddmc1I9da749o_" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture11~~slides" href="slides/15_Query_Optimization.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+                        </div>
+
+                        <h4 id="lecture13" class="anchor">Lecture 13</h4>
+                        <div class="well">
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Group Communication </h4>
+                            <blockquote>Reliable Broadcast | Consensus | Paxos | Zab</blockquote>
+                            <p class="text-right">
+                                <a id="lecture13~~video" href="https://youtu.be/2fDHmqxQ2kU" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Video</a>
+                                <a id="lecture13~~slides" href="slides/19_Group_Communiction.pdf" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-blackboard"></span> Slides</a>
+                            </p>
+
+                            <h4><span class="glyphicon glyphicon-blackboard"></span> Final Project Phase 2 </h4>
+                            <blockquote>Good Luck</blockquote>
+                            <p class="text-right">
+                                <a id="lecture13~~final" href="https://shwu10.cs.nthu.edu.tw/courses/databases/2020-spring/db20-final-project-opt" class="btn btn-primary"><span class="fa fa-gitlab" aria-hidden="true"></span> GitLab</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container --> 
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                        <h1 class="section-heading">Resources</h1>
+                        <p>Following provides links to some useful online resources. If this course starts your DB journey, don't stop here. Enroll yourself in advanced courses (shown below) to learn more.</p>
+
+                        <h4>Other Course Materials</h4>
+                        <p>For more course materials (such as assignments, score sheets, etc.) and online forum please refer to the GitLab.</p>
+                        <p class="text-right">
+                            <a id="resources~~ilms" href="https://shwu10.cs.nthu.edu.tw/courses/databases/2020-spring" target="_blank" class="btn btn-primary"><span class="fa fa-gitlab" aria-hidden="true"></span>   GitLab</a>
+
+                        <h4>Documentation</h4>
+                        <p>Describes the API operations for the VanillaDB in detail.</p>
+                        <p class="text-right">
+                            <a href="docs/core-0.4.0-course-javadoc/index.html" target="_blank" class="btn btn-primary"><span class="fa fa-book" aria-hidden="true"></span>   Java Doc</a>
+
+                        <h4>Reference Books</h4>
+                        <ul>
+                            <li>
+                                <p>Raghu Ramakrishnan et al., <em>Database Management Systems</em>, 3 Edition, McGraw-Hill, 2002, ISBN: 0072465638</p>
+                            </li>
+                            <li>
+                                <p>Abraham Silberschatz et al, <em>Database System Concepts</em>, 6 Edition, McGraw-Hill, 2010, ISBN: 0073523321</p>
+                            </li>
+                            <li>
+                                <p>Edward Sciore, <em>Database Design and Implementation</em>, Wiley, 2008, ISBN: 0471757160</p>
+                            </li>
+                            <li>
+                                <p>M.Tamer Özsu, <em>Principles of Distributed Database Systems</em>, 3 Edition, Springer, 2011, ISBN: 1441988335</p>
+                            </li>
+                            <li>
+                                <p>Rachid Guerraoui et al., <em>Introduction to Reliable Distributed Programming</em>, Springer, 2006, ISBN: 3540288457</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </section>
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="text-center">Copyright &copy; DataLab 2019</p>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </footer>
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="./js/main.js"></script>
+    </body>
+</html>

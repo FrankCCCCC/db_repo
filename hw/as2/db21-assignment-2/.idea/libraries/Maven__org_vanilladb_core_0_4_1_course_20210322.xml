@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.vanilladb:core:0.4.1-course-20210322">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/vanilladb/core/0.4.1-course-20210322/core-0.4.1-course-20210322.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/vanilladb/core/0.4.1-course-20210322/core-0.4.1-course-20210322-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/vanilladb/core/0.4.1-course-20210322/core-0.4.1-course-20210322-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
