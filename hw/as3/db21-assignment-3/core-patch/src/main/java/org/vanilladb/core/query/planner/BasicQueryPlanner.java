@@ -53,8 +53,10 @@ public class BasicQueryPlanner implements QueryPlanner {
 		}
 		// Step 2: Create the product of all table plans
 		Plan p = plans.remove(0);
-		for (Plan nextplan : plans)
+		for (Plan nextplan : plans){
 			p = new ProductPlan(p, nextplan);
+			// System.out.println("ProductPlan (" + p.blocksAccessed() + ")");
+		}
 		// Step 3: Add a selection plan for the predicate
 		p = new SelectPlan(p, data.pred());
 		// Step 4: Add a group-by plan if specified
@@ -66,6 +68,7 @@ public class BasicQueryPlanner implements QueryPlanner {
 		// Step 6: Add a sort plan if specified
 		if (data.sortFields() != null)
 			p = new SortPlan(p, data.sortFields(), data.sortDirections(), tx);
+		// Step 7: Add a explain plan if needed
 		
 		return p;
 	}

@@ -24,10 +24,9 @@ import org.vanilladb.core.sql.Constant;
  * operator. All methods except hasField delegate their work to the underlying
  * scan.
  */
-public class ProjectScan implements Scan {
+public class ExplainScan implements Scan {
 	private Scan s;
 	private Collection<String> fieldList;
-	private int recs;
 
 	/**
 	 * Creates a project scan having the specified underlying scan and field
@@ -38,21 +37,18 @@ public class ProjectScan implements Scan {
 	 * @param fieldList
 	 *            the list of field names
 	 */
-	public ProjectScan(Scan s, Collection<String> fieldList) {
+	public ExplainScan(Scan s, Collection<String> fieldList) {
 		this.s = s;
 		this.fieldList = fieldList;
-		this.recs = 0;
 	}
 
 	@Override
 	public void beforeFirst() {
-		recs = 0;
 		s.beforeFirst();
 	}
 
 	@Override
 	public boolean next() {
-		recs++;
 		return s.next();
 	}
 
@@ -69,9 +65,6 @@ public class ProjectScan implements Scan {
 			throw new RuntimeException("field " + fldName + " not found.");
 	}
 
-	public int getRecs() {
-		return recs;
-	}
 
 	/**
 	 * Returns true if the specified field is in the projection list.

@@ -26,6 +26,7 @@ import org.vanilladb.core.sql.predicate.Predicate;
 
 
 public class QueryData {
+	private boolean isExplain;
 	private Set<String> projFields;
 	private Set<String> tables;
 	private Predicate pred;
@@ -53,9 +54,10 @@ public class QueryData {
 	 * @param sortDirs
 	 *            a list of sort directions
 	 */
-	public QueryData(Set<String> projFields, Set<String> tables, Predicate pred,
+	public QueryData(boolean isExplain, Set<String> projFields, Set<String> tables, Predicate pred,
 			Set<String> groupFields, Set<AggregationFn> aggFn, List<String> sortFields, List<Integer> sortDirs) {
 		
+		this.isExplain = isExplain;
 		this.projFields = projFields;
 		this.tables = tables;
 		this.pred = pred;
@@ -63,6 +65,15 @@ public class QueryData {
 		this.aggFn = aggFn;
 		this.sortFields = sortFields;
 		this.sortDirs = sortDirs;
+	}
+
+	/**
+	 * Return whether need to explain the query or not.
+	 * 
+	 * @return a boolean whether need to explain the query or not.
+	 */
+	public boolean isExplain(){
+		return this.isExplain;
 	}
 
 	/**
