@@ -15,6 +15,9 @@
  *******************************************************************************/
 package org.vanilladb.core.query.algebra;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.vanilladb.core.sql.Schema;
@@ -65,8 +68,22 @@ public class ProjectPlan implements Plan {
 	}
 
 	@Override
-	public String getExplain(){
-		return this.getClass().getName() + "\n"+ p.getExplain();
+	public String getExplain(int depth){
+		String[] tmp = this.getClass().getName().split("\\.");
+		String className = tmp[tmp.length-1];
+		
+		String explains = "\t".repeat(depth) + "->" + className 
+						+ "(#blks=" + this.blocksAccessed() + "," 
+						+ "#recs=" + this.recordsOutput() + ")\n" 
+						+ p.getExplain(depth + 1);
+		
+		// String[] explains = p.getExplain(depth + 1);
+		// List<String> explainList = Arrays.asList(explains);
+		// explainList.add(0, explain);
+		// String[] ExplainArray = new String[explainList.size()];
+		// explainList.toArray(ExplainArray);
+
+		return explains;
 	}
 
 	/**

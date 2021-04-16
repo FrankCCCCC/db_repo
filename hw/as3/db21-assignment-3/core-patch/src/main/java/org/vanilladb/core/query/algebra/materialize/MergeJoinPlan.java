@@ -66,8 +66,16 @@ public class MergeJoinPlan extends AbstractJoinPlan {
 	}
 
 	@Override
-	public String getExplain(){
-		return this.getClass().getName() + "\n"+ sp1.getExplain() + "\n"+ sp2.getExplain();
+	public String getExplain(int depth){
+		String[] tmp = this.getClass().getName().split("\\.");
+		String className = tmp[tmp.length-1];
+		
+		String explain =  "\t".repeat(depth) + "->" + className + 
+						"(#blks=" + this.blocksAccessed() + "," 
+						+ "#recs=" + this.recordsOutput() + ")\n"
+						+ sp1.getExplain(depth + 1)
+						+ sp2.getExplain(depth + 1);
+		return explain;
 	}
 
 	/**

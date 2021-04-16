@@ -15,9 +15,11 @@
  *******************************************************************************/
 package org.vanilladb.core.query.algebra;
 
+import java.util.Collection;
 import java.util.Set;
 
 import org.vanilladb.core.sql.Schema;
+import org.vanilladb.core.sql.Type;
 import org.vanilladb.core.storage.metadata.statistics.Histogram;
 
 /**
@@ -60,16 +62,18 @@ public class ExplainPlan implements Plan {
 	 */
 	public ExplainPlan(Plan p, Set<String> fldNames) {
 		this.p = p;
-		for (String fldname : fldNames)
-			schema.add(fldname, p.schema());
-		
-		explain = getExplain();
+		// for (String fldname : fldNames)
+		// 	schema.add(fldname, p.schema());
+
+		schema.addField("query-plan", Type.VARCHAR(500));
+
+		explain = getExplain(0);
 		hist = projectHistogram(p.histogram(), fldNames);
 	}
 
 	@Override
-	public String getExplain(){
-		return explain;
+	public String getExplain(int depth){
+		return p.getExplain(0);
 	}
 
 	/**
@@ -79,8 +83,10 @@ public class ExplainPlan implements Plan {
 	 */
 	@Override
 	public Scan open() {
-		Scan s = p.open();
-		return new ProjectScan(s, schema.fields());
+		// Scan s = new ExplainScan(explain, "query-plan");
+		// return new ProjectScan(s, schema.fields());
+
+		return new ExplainScan(explain, "query-plan");
 	}
 
 	/**

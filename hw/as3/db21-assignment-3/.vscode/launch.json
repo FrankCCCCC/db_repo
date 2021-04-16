@@ -82,6 +82,10 @@
         {
             "name": "RunBenchmark",
             "configurations": ["Launch Bench Server", "Launch Bench Client 2"],
+        },
+        {
+            "name": "RunSQL",
+            "configurations": ["Launch DB", "Launch ConsoleSQLInterpreter"],
         }
     ]
 }

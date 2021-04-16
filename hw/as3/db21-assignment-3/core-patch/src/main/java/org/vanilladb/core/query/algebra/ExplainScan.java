@@ -18,6 +18,7 @@ package org.vanilladb.core.query.algebra;
 import java.util.Collection;
 
 import org.vanilladb.core.sql.Constant;
+import org.vanilladb.core.sql.VarcharConstant;
 
 /**
  * The scan class corresponding to the <em>project</em> relational algebra
@@ -25,8 +26,10 @@ import org.vanilladb.core.sql.Constant;
  * scan.
  */
 public class ExplainScan implements Scan {
-	private Scan s;
-	private Collection<String> fieldList;
+	// private Scan s;
+	private int count;
+	private String explain;
+	private String fieldName;
 
 	/**
 	 * Creates a project scan having the specified underlying scan and field
@@ -37,32 +40,45 @@ public class ExplainScan implements Scan {
 	 * @param fieldList
 	 *            the list of field names
 	 */
-	public ExplainScan(Scan s, Collection<String> fieldList) {
-		this.s = s;
-		this.fieldList = fieldList;
+	public ExplainScan(String explain, String fieldName) {
+		// this.s = s;
+		this.count = 0;
+		this.explain = explain;
+		this.fieldName = fieldName;
 	}
 
 	@Override
 	public void beforeFirst() {
-		s.beforeFirst();
+		// s.beforeFirst();
+		count = 0;
 	}
 
 	@Override
 	public boolean next() {
-		return s.next();
+		count++;
+		return count > 1? false : true;
 	}
 
 	@Override
 	public void close() {
-		s.close();
+		// s.close();
 	}
 
 	@Override
 	public Constant getVal(String fldName) {
-		if (hasField(fldName))
-			return s.getVal(fldName);
-		else
+		// System.out.println("Check NULL");
+		if (hasField(fldName)){
+			// VarcharConstant vc = new VarcharConstant(explain);
+			
+			// System.out.println("Check NULL");
+			// System.out.println("TYPE NULL: " + vc.getClass().getName());
+
+			return new VarcharConstant(explain);
+		}
+		else{
 			throw new RuntimeException("field " + fldName + " not found.");
+		}
+			
 	}
 
 
@@ -73,6 +89,6 @@ public class ExplainScan implements Scan {
 	 */
 	@Override
 	public boolean hasField(String fldName) {
-		return fieldList.contains(fldName);
+		return fieldName.equals(fldName);
 	}
 }

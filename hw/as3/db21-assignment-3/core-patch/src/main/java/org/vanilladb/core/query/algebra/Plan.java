@@ -24,7 +24,7 @@ import org.vanilladb.core.storage.metadata.statistics.Histogram;
  */
 public interface Plan {
 
-	String getExplain();
+	String getExplain(int depth);
 
 	/**
 	 * Opens a scan corresponding to this plan. The scan will be positioned

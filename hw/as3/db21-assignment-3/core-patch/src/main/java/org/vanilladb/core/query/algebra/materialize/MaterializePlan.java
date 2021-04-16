@@ -45,8 +45,15 @@ public class MaterializePlan implements Plan {
 	}
 
 	@Override
-	public String getExplain(){
-		return this.getClass().getName() + "\n"+ p.getExplain();
+	public String getExplain(int depth){
+		String[] tmp = this.getClass().getName().split("\\.");
+		String className = tmp[tmp.length-1];
+		
+		String explain = "\t".repeat(depth) + "->" + className
+						+ "(#blks=" + this.blocksAccessed() + "," 
+						+ "#recs=" + this.recordsOutput() + ")\n"
+						+ p.getExplain(depth + 1);
+		return explain;
 	}
 
 	/**

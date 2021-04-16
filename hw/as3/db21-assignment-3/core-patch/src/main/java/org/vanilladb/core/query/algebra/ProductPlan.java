@@ -82,8 +82,18 @@ public class ProductPlan implements Plan {
 	}
 
 	@Override
-	public String getExplain(){
-		return this.getClass().getName() + "\n"+ p1.getExplain() + "\n" + "\n"+ p2.getExplain();
+	public String getExplain(int depth){
+		String[] tmp = this.getClass().getName().split("\\.");
+		String className = tmp[tmp.length-1];
+		
+		String explains = "\t".repeat(depth) + "->" + className 
+						+ " (#blks=" + this.blocksAccessed() + "," 
+						+ " #recs=" + this.recordsOutput() + ")\n" 
+						+ p1.getExplain(depth + 1) 
+						+ p2.getExplain(depth + 1);
+
+		// return this.getClass().getName() + "\n"+ p1.getExplain() + "\n" + "\n"+ p2.getExplain();
+		return explains;
 	}
 
 	/**

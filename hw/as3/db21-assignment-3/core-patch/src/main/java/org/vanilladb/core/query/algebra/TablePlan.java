@@ -50,8 +50,14 @@ public class TablePlan implements Plan {
 	}
 
 	@Override
-	public String getExplain(){
-		return this.getClass().getName();
+	public String getExplain(int depth){
+		String[] tmp = this.getClass().getName().split("\\.");
+		String className = tmp[tmp.length-1];
+		
+		String explain = "\t".repeat(depth) + "->" + className  + " on (" + ti.tableName() +") "
+						+  "(#blks=" + this.blocksAccessed() + "," + "#recs=" + this.recordsOutput() + ")\n";
+		// return this.getClass().getName();
+		return explain;
 	}
 
 	/**
