@@ -66,13 +66,7 @@ public class ExplainScan implements Scan {
 
 	@Override
 	public Constant getVal(String fldName) {
-		// System.out.println("Check NULL");
 		if (hasField(fldName)){
-			// VarcharConstant vc = new VarcharConstant(explain);
-			
-			// System.out.println("Check NULL");
-			// System.out.println("TYPE NULL: " + vc.getClass().getName());
-
 			return new VarcharConstant(explain);
 		}
 		else{

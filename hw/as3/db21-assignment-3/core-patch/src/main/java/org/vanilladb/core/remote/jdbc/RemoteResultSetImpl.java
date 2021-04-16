@@ -132,9 +132,6 @@ class RemoteResultSetImpl extends UnicastRemoteObject implements
 		try {
 			fldName = fldName.toLowerCase(); // to ensure case-insensitivity
 
-			System.out.println("!RS " + fldName);
-			System.out.println("!RS " + (String) s.getVal(fldName).castTo(VARCHAR).asJavaVal());
-
 			return (String) s.getVal(fldName).castTo(VARCHAR).asJavaVal();
 		} catch (RuntimeException e) {
 			rconn.rollback();
