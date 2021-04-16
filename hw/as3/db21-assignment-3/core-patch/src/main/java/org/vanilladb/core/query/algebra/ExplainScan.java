@@ -15,8 +15,6 @@
  *******************************************************************************/
 package org.vanilladb.core.query.algebra;
 
-import java.util.Collection;
-
 import org.vanilladb.core.sql.Constant;
 import org.vanilladb.core.sql.VarcharConstant;
 

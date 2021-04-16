@@ -15,7 +15,6 @@
  *******************************************************************************/
 package org.vanilladb.core.query.algebra;
 
-import java.util.Collection;
 import java.util.Set;
 
 import org.vanilladb.core.sql.Schema;
