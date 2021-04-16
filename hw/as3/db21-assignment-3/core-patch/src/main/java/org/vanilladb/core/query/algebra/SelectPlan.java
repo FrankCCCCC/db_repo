@@ -329,6 +329,11 @@ public class SelectPlan extends ReduceRecordsPlan {
 		hist = predHistogram(p.histogram(), pred);
 	}
 
+	@Override
+	public String getExplain(){
+		return this.getClass().getName() + "\n"+ p.getExplain();
+	}
+
 	/**
 	 * Creates a select scan for this query.
 	 * 

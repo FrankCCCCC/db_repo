@@ -46,7 +46,8 @@ public class ExplainPlan implements Plan {
 
 	private Plan p;
 	private Schema schema = new Schema();
-	private Histogram hist;
+	private Histogram hist;	
+	private String explain;
 
 	/**
 	 * Creates a new project node in the query tree, having the specified
@@ -61,7 +62,14 @@ public class ExplainPlan implements Plan {
 		this.p = p;
 		for (String fldname : fldNames)
 			schema.add(fldname, p.schema());
+		
+		explain = getExplain();
 		hist = projectHistogram(p.histogram(), fldNames);
+	}
+
+	@Override
+	public String getExplain(){
+		return explain;
 	}
 
 	/**

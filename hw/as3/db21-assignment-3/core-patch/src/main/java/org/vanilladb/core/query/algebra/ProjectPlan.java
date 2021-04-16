@@ -64,6 +64,11 @@ public class ProjectPlan implements Plan {
 		hist = projectHistogram(p.histogram(), fldNames);
 	}
 
+	@Override
+	public String getExplain(){
+		return this.getClass().getName() + "\n"+ p.getExplain();
+	}
+
 	/**
 	 * Creates a project scan for this query.
 	 * 

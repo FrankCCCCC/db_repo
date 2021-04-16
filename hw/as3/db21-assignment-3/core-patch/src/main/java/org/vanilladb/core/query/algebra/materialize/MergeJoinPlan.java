@@ -65,6 +65,11 @@ public class MergeJoinPlan extends AbstractJoinPlan {
 		hist = joinHistogram(p1.histogram(), p2.histogram(), fldName1, fldName2);
 	}
 
+	@Override
+	public String getExplain(){
+		return this.getClass().getName() + "\n"+ sp1.getExplain() + "\n"+ sp2.getExplain();
+	}
+
 	/**
 	 * The method first sorts its two underlying scans on their join field. It
 	 * then returns a mergejoin scan of the two sorted table scans.

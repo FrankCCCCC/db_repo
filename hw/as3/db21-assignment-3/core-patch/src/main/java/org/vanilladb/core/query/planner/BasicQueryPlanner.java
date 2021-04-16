@@ -17,8 +17,9 @@ package org.vanilladb.core.query.planner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
-
+import org.vanilladb.core.query.algebra.ExplainPlan;
 import org.vanilladb.core.query.algebra.Plan;
 import org.vanilladb.core.query.algebra.ProductPlan;
 import org.vanilladb.core.query.algebra.ProjectPlan;
@@ -34,6 +35,7 @@ import org.vanilladb.core.storage.tx.Transaction;
  * The simplest, most naive query planner possible.
  */
 public class BasicQueryPlanner implements QueryPlanner {
+	private static Logger logger = Logger.getLogger(ExplainPlan.class.getName());
 
 	/**
 	 * Creates a query plan as follows. It first takes the product of all tables
@@ -69,6 +71,10 @@ public class BasicQueryPlanner implements QueryPlanner {
 		if (data.sortFields() != null)
 			p = new SortPlan(p, data.sortFields(), data.sortDirections(), tx);
 		// Step 7: Add a explain plan if needed
+		if(data.isExplain()){
+			p = new ExplainPlan(p, data.projectFields());
+			logger.info(p.getExplain());
+		}
 		
 		return p;
 	}

@@ -49,6 +49,11 @@ public class TablePlan implements Plan {
 		si = VanillaDb.statMgr().getTableStatInfo(ti, tx);
 	}
 
+	@Override
+	public String getExplain(){
+		return this.getClass().getName();
+	}
+
 	/**
 	 * Creates a table scan for this query.
 	 * 

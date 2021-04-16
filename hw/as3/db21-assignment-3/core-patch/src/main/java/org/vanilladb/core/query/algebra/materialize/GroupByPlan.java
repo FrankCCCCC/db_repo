@@ -281,6 +281,11 @@ public class GroupByPlan extends ReduceRecordsPlan {
 		hist = groupByHistogram(p.histogram(), this.groupFlds, aggFns);
 	}
 
+	@Override
+	public String getExplain(){
+		return this.getClass().getName() + "\n"+ sp.getExplain();
+	}
+
 	/**
 	 * This method opens a sort plan for the specified plan. The sort plan
 	 * ensures that the underlying records will be appropriately grouped.

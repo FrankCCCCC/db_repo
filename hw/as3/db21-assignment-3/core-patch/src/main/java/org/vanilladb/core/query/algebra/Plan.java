@@ -24,6 +24,8 @@ import org.vanilladb.core.storage.metadata.statistics.Histogram;
  */
 public interface Plan {
 
+	String getExplain();
+
 	/**
 	 * Opens a scan corresponding to this plan. The scan will be positioned
 	 * before its first record.

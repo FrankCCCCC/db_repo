@@ -79,6 +79,11 @@ public class SortPlan implements Plan {
 		schema = p.schema();
 	}
 
+	@Override
+	public String getExplain(){
+		return this.getClass().getName() + "\n"+ p.getExplain();
+	}
+
 	/**
 	 * This method is where most of the action is. Up to 2 sorted temporary
 	 * tables are created, and are passed into SortScan for final merging.

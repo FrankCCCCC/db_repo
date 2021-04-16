@@ -44,6 +44,11 @@ public class MaterializePlan implements Plan {
 		this.tx = tx;
 	}
 
+	@Override
+	public String getExplain(){
+		return this.getClass().getName() + "\n"+ p.getExplain();
+	}
+
 	/**
 	 * This method loops through the underlying query, copying its output
 	 * records into a temporary table. It then returns a table scan for that

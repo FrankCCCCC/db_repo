@@ -81,6 +81,11 @@ public class ProductPlan implements Plan {
 		hist = productHistogram(p1.histogram(), p2.histogram());
 	}
 
+	@Override
+	public String getExplain(){
+		return this.getClass().getName() + "\n"+ p1.getExplain() + "\n" + "\n"+ p2.getExplain();
+	}
+
 	/**
 	 * Creates a product scan for this query.
 	 * 
