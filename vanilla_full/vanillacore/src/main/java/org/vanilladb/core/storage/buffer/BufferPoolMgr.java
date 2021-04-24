@@ -44,7 +44,7 @@ class BufferPoolMgr {
 	 * {@link VanillaDb#initFileAndLogMgr(String)} or is called first.
 	 * 
 	 * @param numBuffs
-	 *            the number of buffer slots to allocate
+	 *            the number of buffer slots to allocate. Must be at least 2.
 	 */
 	BufferPoolMgr(int numBuffs) {
 		bufferPool = new Buffer[numBuffs];
@@ -103,6 +103,7 @@ class BufferPoolMgr {
 				// Choose Unpinned Buffer
 				int lastReplacedBuff = this.lastReplacedBuff;
 				int currBlk = (lastReplacedBuff + 1) % bufferPool.length;
+				// Note: this check will fail if there is only one buffer
 				while (currBlk != lastReplacedBuff) {
 					buff = bufferPool[currBlk];
 					
@@ -110,7 +111,7 @@ class BufferPoolMgr {
 					if (buff.getExternalLock().tryLock()) {
 						try {
 							// Check if there is no one use it
-							if (!buff.isPinned()) {
+							if (!buff.isPinned() && !buff.checkRecentlyPinnedAndReset()) {
 								this.lastReplacedBuff = currBlk;
 								
 								// Swap
@@ -182,7 +183,7 @@ class BufferPoolMgr {
 				// Get the lock of buffer if it is free
 				if (buff.getExternalLock().tryLock()) {
 					try {
-						if (!buff.isPinned()) {
+						if (!buff.isPinned() && !buff.checkRecentlyPinnedAndReset()) {
 							this.lastReplacedBuff = currBlk;
 							
 							// Swap

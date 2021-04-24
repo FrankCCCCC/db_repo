@@ -29,7 +29,6 @@ import org.vanilladb.core.storage.file.BlockId;
 import org.vanilladb.core.storage.tx.Transaction;
 import org.vanilladb.core.storage.tx.TransactionLifecycleListener;
 import org.vanilladb.core.util.CoreProperties;
-import org.vanilladb.core.util.Timer;
 
 /**
  * The publicly-accessible buffer manager. A buffer manager wraps a
@@ -83,8 +82,6 @@ public class BufferMgr implements TransactionLifecycleListener {
 	
 	public BufferMgr(long txNum) {
 		this.txNum = txNum;
-		
-//		Timer.
 	}
 
 	@Override
@@ -112,14 +109,6 @@ public class BufferMgr implements TransactionLifecycleListener {
 	 * @return the buffer pinned to that block
 	 */
 	public Buffer pin(BlockId blk) {
-		Timer.getLocalTimer().reset();
-		Timer.getLocalTimer().startComponentTimer("Pin " + blk);
-		try{
-			
-		}finally {
-			Timer.getLocalTimer().stopComponentTimer("Pin " + blk);
-			Timer.getLocalTimer().addToGlobalStatistics();
-		}
 		// Try to find out if this block has been pinned by this transaction
 		PinningBuffer pinnedBuff = pinningBuffers.get(blk);
 		if (pinnedBuff != null) {

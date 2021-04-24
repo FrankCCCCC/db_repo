@@ -17,6 +17,7 @@ package org.vanilladb.core.storage.buffer;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,7 +32,10 @@ class BufferPoolMgr {
 	private static Logger logger = Logger.getLogger(BufferPoolMgr.class.getName());
 	private Buffer[] bufferPool;
 	private Map<BlockId, Buffer> blockMap;
-	private int numAvailable, lastReplacedBuff;
+	// private int numAvailable, lastReplacedBuff;
+	private int lastReplacedBuff;
+
+	AtomicInteger numAvailable = new AtomicInteger(0);  
 
 	/**
 	 * Creates a buffer manager having the specified number of buffer slots. This
@@ -49,7 +53,9 @@ class BufferPoolMgr {
 
 		bufferPool = new Buffer[numBuffs];
 		blockMap = new ConcurrentHashMap<BlockId, Buffer>(numBuffs);
-		numAvailable = numBuffs;
+		// numAvailable = numBuffs;
+		numAvailable.set(numBuffs);
+
 		lastReplacedBuff = 0;
 		for (int i = 0; i < numBuffs; i++)
 			bufferPool[i] = new Buffer();
@@ -74,20 +80,27 @@ class BufferPoolMgr {
 	 * @param blk a block ID
 	 * @return the pinned buffer
 	 */
-	synchronized Buffer pin(BlockId blk) {
+	Buffer pin(BlockId blk) {
 		Buffer buff = findExistingBuffer(blk);
 		if (buff == null) {
 			buff = chooseUnpinnedBuffer();
 			if (buff == null)
 				return null;
 			BlockId oldBlk = buff.block();
-			if (oldBlk != null)
-				blockMap.remove(oldBlk);
+			synchronized(blockMap){
+				if (oldBlk != null){
+					blockMap.remove(oldBlk);
+				}
+			}
 			buff.assignToBlock(blk);
-			blockMap.put(blk, buff);
+			synchronized(blockMap){
+				blockMap.put(blk, buff);
+			}
 		}
-		if (!buff.isPinned())
-			numAvailable--;
+		if (!buff.isPinned()){
+			// numAvailable--;
+			numAvailable.decrementAndGet();
+		}
 		buff.pin();
 		return buff;
 	}
@@ -100,18 +113,23 @@ class BufferPoolMgr {
 	 * @param fmtr     a pageformatter object, used to format the new block
 	 * @return the pinned buffer
 	 */
-	synchronized Buffer pinNew(String fileName, PageFormatter fmtr) {
+	Buffer pinNew(String fileName, PageFormatter fmtr) {
 		Buffer buff = chooseUnpinnedBuffer();
 		if (buff == null)
 			return null;
 		BlockId oldBlk = buff.block();
-		if (oldBlk != null)
-			blockMap.remove(oldBlk);
+		synchronized(blockMap){
+			if (oldBlk != null)
+				blockMap.remove(oldBlk);
+		}
 
 		buff.assignToNew(fileName, fmtr);
-		numAvailable--;
+		// numAvailable--;
+		numAvailable.decrementAndGet();
 		buff.pin();
-		blockMap.put(buff.block(), buff);
+		synchronized(blockMap){
+			blockMap.put(buff.block(), buff);
+		}
 		return buff;
 	}
 
@@ -123,8 +141,10 @@ class BufferPoolMgr {
 	synchronized void unpin(Buffer... buffs) {
 		for (Buffer buff : buffs) {
 			buff.unpin();
-			if (!buff.isPinned())
-				numAvailable++;
+			if (!buff.isPinned()){
+				// numAvailable++;
+				numAvailable.incrementAndGet();
+			}
 		}
 	}
 
@@ -134,7 +154,8 @@ class BufferPoolMgr {
 	 * @return the number of available buffers
 	 */
 	synchronized int available() {
-		return numAvailable;
+		// return numAvailable;
+		return numAvailable.get();
 	}
 
 	private Buffer findExistingBuffer(BlockId blk) {
