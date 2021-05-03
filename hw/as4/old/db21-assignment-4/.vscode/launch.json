@@ -44,7 +44,7 @@
             "mainClass": "org.vanilladb.bench.server.StartUp",
             "projectName": "bench",
             "cwd": "${workspaceFolder}/bench",
-            "args": "HappyDB",
+            "args": "HiDB",
             "vmArgs": "-Djava.util.logging.config.file=target/classes/java/util/logging/logging.properties -Dorg.vanilladb.bench.config.file=target/classes/org/vanilladb/bench/vanillabench.properties -Dorg.vanilladb.core.config.file=target/classes/org/vanilladb/core/vanilladb.properties",
         },
         {
@@ -54,7 +54,7 @@
             "mainClass": "org.vanilladb.core.server.StartUp",
             "projectName": "core-patch",
             "cwd": "${workspaceFolder}/core-patch",
-            "args": "HappyDB",
+            "args": "HiDB",
             "vmArgs": "-Djava.util.logging.config.file=target/classes/java/util/logging/logging.properties -Dorg.vanilladb.core.config.file=target/classes/org/vanilladb/core/vanilladb.properties"
         },
         {

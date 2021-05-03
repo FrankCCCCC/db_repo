@@ -232,12 +232,12 @@ public class Buffer {
 	 * Increases the buffer's pin count.
 	 */
 	void pin() {
-		internalLock.writeLock().lock();
+		// internalLock.writeLock().lock();
 		try {
 			pins++;
 			isRecentlyPinned.set(true);
 		} finally {
-			internalLock.writeLock().unlock();
+			// internalLock.writeLock().unlock();
 		}
 	}
 
@@ -245,11 +245,11 @@ public class Buffer {
 	 * Decreases the buffer's pin count.
 	 */
 	void unpin() {
-		internalLock.writeLock().lock();
+		// internalLock.writeLock().lock();
 		try {
 			pins--;
 		} finally {
-			internalLock.writeLock().unlock();
+			// internalLock.writeLock().unlock();
 		}
 	}
 
@@ -260,11 +260,11 @@ public class Buffer {
 	 * @return true if the buffer is pinned
 	 */
 	boolean isPinned() {
-		internalLock.readLock().lock();
+		// internalLock.readLock().lock();
 		try {
 			return pins > 0;
 		} finally {
-			internalLock.readLock().unlock();
+			// internalLock.readLock().unlock();
 		}
 	}
 	
