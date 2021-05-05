@@ -1,0 +1,3 @@
+# of txns (including aborted) during benchmark period: 202726
+MICRO_TXN - committed: 202640, aborted: 86, avg latency: 1 ms
+TOTAL - committed: 202640, aborted: 86, avg latency: 1 ms
