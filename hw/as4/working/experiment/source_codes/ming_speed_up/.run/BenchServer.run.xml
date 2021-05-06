@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="BenchServer" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="11" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="MAIN_CLASS_NAME" value="org.vanilladb.bench.server.StartUp" />
+    <module name="bench" />
+    <option name="PROGRAM_PARAMETERS" value="ASS4_DB" />
+    <option name="VM_PARAMETERS" value="-Djava.util.logging.config.file=target/classes/java/util/logging/logging.properties -Dorg.vanilladb.bench.config.file=target/classes/org/vanilladb/bench/vanillabench.properties -Dorg.vanilladb.core.config.file=target/classes/org/vanilladb/core/vanilladb.properties" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bench" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
