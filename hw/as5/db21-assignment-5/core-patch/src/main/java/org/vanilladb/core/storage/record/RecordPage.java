@@ -353,7 +353,20 @@ public class RecordPage implements Record {
 	private Constant getVal(int offset, Type type) {
 		if (!isTempTable())
 			tx.concurrencyMgr().readRecord(new RecordId(blk, currentSlot));
-		return currentBuff.getVal(offset, type);
+		
+		// Cache to private workspace
+		RecordId target_record = new RecordId(blk, offset);
+		Constant workspce_val = tx.workspace().get(target_record);
+
+		if(workspce_val == null){
+			Constant val = currentBuff.getVal(offset, type);
+			tx.workspace().put(target_record, val);
+			return val;
+		}
+		
+		return workspce_val;
+
+		// return currentBuff.getVal(offset, type);
 	}
 
 	private void setVal(int offset, Constant val) {
@@ -364,6 +377,10 @@ public class RecordPage implements Record {
 		LogSeqNum lsn = doLog ? tx.recoveryMgr().logSetVal(currentBuff, offset, val)
 				: null;
 		currentBuff.setVal(offset, val, tx.getTransactionNumber(), lsn);
+
+		// Cache to private workspace
+		RecordId target_record = new RecordId(blk, offset);
+		tx.workspace().put(target_record, val);
 	}
 
 	private boolean isTempTable() {

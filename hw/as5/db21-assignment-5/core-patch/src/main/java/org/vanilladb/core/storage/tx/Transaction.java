@@ -15,13 +15,16 @@
  *******************************************************************************/
 package org.vanilladb.core.storage.tx;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.vanilladb.core.server.VanillaDb;
+import org.vanilladb.core.sql.Constant;
 import org.vanilladb.core.storage.buffer.BufferMgr;
+import org.vanilladb.core.storage.record.RecordId;
 import org.vanilladb.core.storage.tx.concurrency.ConcurrencyMgr;
 import org.vanilladb.core.storage.tx.recovery.RecoveryMgr;
 
@@ -39,6 +42,7 @@ public class Transaction {
 	private List<TransactionLifecycleListener> lifecycleListeners;
 	private long txNum;
 	private boolean readOnly;
+	private HashMap<RecordId, Constant> workspace = new HashMap<RecordId, Constant>();
 
 	/**
 	 * Creates a new transaction and associates it with a recovery manager, a
@@ -149,5 +153,9 @@ public class Transaction {
 
 	public BufferMgr bufferMgr() {
 		return bufferMgr;
+	}
+
+	public HashMap<RecordId, Constant> workspace(){
+		return workspace;
 	}
 }
