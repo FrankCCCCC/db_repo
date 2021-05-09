@@ -30,6 +30,7 @@ public class TablePlan implements Plan {
 	private Transaction tx;
 	private TableInfo ti;
 	private TableStatInfo si;
+	private boolean is2V2PL;
 
 	/**
 	 * Creates a leaf node in the query tree corresponding to the specified
@@ -47,6 +48,21 @@ public class TablePlan implements Plan {
 			throw new TableNotFoundException("table '" + tblName
 					+ "' is not defined in catalog.");
 		si = VanillaDb.statMgr().getTableStatInfo(ti, tx);
+		this.is2V2PL = false;
+	}
+
+	public TablePlan(String tblName, Transaction tx, boolean is2V2PL) {
+		this.tx = tx;
+		ti = VanillaDb.catalogMgr().getTableInfo(tblName, tx);
+		if (ti == null)
+			throw new TableNotFoundException("table '" + tblName
+					+ "' is not defined in catalog.");
+		si = VanillaDb.statMgr().getTableStatInfo(ti, tx);
+		this.is2V2PL = is2V2PL;
+	}
+
+	public boolean is2V2PL(){
+		return is2V2PL;
 	}
 
 	/**
@@ -56,7 +72,7 @@ public class TablePlan implements Plan {
 	 */
 	@Override
 	public Scan open() {
-		return new TableScan(ti, tx);
+		return new TableScan(ti, tx, is2V2PL);
 	}
 
 	/**

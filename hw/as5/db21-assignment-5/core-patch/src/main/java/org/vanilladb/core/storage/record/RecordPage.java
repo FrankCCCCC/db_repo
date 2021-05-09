@@ -52,6 +52,7 @@ public class RecordPage implements Record {
 	private BlockId blk;
 	private TableInfo ti;
 	private boolean doLog;
+	private boolean is2V2PL;
 
 	private Buffer currentBuff;
 	private int slotSize;
@@ -154,6 +155,31 @@ public class RecordPage implements Record {
 		}
 		pos = pos < MIN_REC_SIZE ? MIN_REC_SIZE : pos;
 		slotSize = pos + FLAG_SIZE;
+		this.is2V2PL = false;
+	}
+
+	public RecordPage(BlockId blk, TableInfo ti, Transaction tx, boolean doLog, boolean is2V2PL) {
+		this.blk = blk;
+		this.tx = tx;
+		this.ti = ti;
+		this.doLog = doLog;
+		currentBuff = tx.bufferMgr().pin(blk);
+
+		// Optimization: Reduce the cost of prepare the schema information
+		Schema sch = ti.schema();
+		int pos = 0;
+		myOffsetMap = new HashMap<String, Integer>();
+		for (String fldname : sch.fields()) {
+			myOffsetMap.put(fldname, pos);
+			pos += Page.maxSize(sch.type(fldname));
+		}
+		pos = pos < MIN_REC_SIZE ? MIN_REC_SIZE : pos;
+		slotSize = pos + FLAG_SIZE;
+		this.is2V2PL = is2V2PL;
+	}
+
+	public boolean is2V2PL(){
+		return is2V2PL;
 	}
 
 	/**
@@ -356,9 +382,11 @@ public class RecordPage implements Record {
 		
 		// MODIFIED: Modified Code
 		// Cache to private workspace
-		return tx.addGetVal(currentBuff, blk, offset, type);
-
-		// return currentBuff.getVal(offset, type);
+		if(is2V2PL){
+			return tx.addGetVal(currentBuff, blk, offset, type);
+		}else{
+			return currentBuff.getVal(offset, type);
+		}
 	}
 
 	private void setVal(int offset, Constant val) {
@@ -366,13 +394,15 @@ public class RecordPage implements Record {
 			throw new UnsupportedOperationException();
 		if (!isTempTable())
 			tx.concurrencyMgr().modifyRecord(new RecordId(blk, currentSlot));
-
-		// LogSeqNum lsn = doLog ? tx.recoveryMgr().logSetVal(currentBuff, offset, val) : null;
-		// currentBuff.setVal(offset, val, tx.getTransactionNumber(), lsn);
-			
+		
 		// MODIFIED: Modified Code
 		// Cache to private workspace
-		tx.addSetVal(currentBuff, blk, offset, val, doLog);
+		if(is2V2PL){
+			tx.addSetVal(currentBuff, blk, offset, val, doLog);
+		}else{
+			LogSeqNum lsn = doLog ? tx.recoveryMgr().logSetVal(currentBuff, offset, val) : null;
+			currentBuff.setVal(offset, val, tx.getTransactionNumber(), lsn)	;
+		}
 	}
 
 	private boolean isTempTable() {

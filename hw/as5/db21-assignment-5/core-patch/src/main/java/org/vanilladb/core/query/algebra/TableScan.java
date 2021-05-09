@@ -30,6 +30,7 @@ import org.vanilladb.core.storage.tx.Transaction;
 public class TableScan implements UpdateScan {
 	private RecordFile rf;
 	private Schema schema;
+	private boolean is2V2PL;
 
 	/**
 	 * Creates a new table scan, and opens its corresponding record file.
@@ -42,6 +43,17 @@ public class TableScan implements UpdateScan {
 	public TableScan(TableInfo ti, Transaction tx) {
 		rf = ti.open(tx, true);
 		schema = ti.schema();
+		this.is2V2PL = false;
+	}
+
+	public TableScan(TableInfo ti, Transaction tx, boolean is2V2PL) {
+		rf = ti.open(tx, true, is2V2PL);
+		schema = ti.schema();
+		this.is2V2PL = is2V2PL;
+	}
+
+	public boolean is2V2PL(){
+		return is2V2PL;
 	}
 
 	// Scan methods

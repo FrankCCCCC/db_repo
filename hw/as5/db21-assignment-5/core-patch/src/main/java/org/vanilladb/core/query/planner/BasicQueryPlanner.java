@@ -22,9 +22,8 @@ import org.vanilladb.core.query.algebra.ExplainPlan;
 import org.vanilladb.core.query.algebra.Plan;
 import org.vanilladb.core.query.algebra.ProductPlan;
 import org.vanilladb.core.query.algebra.ProjectPlan;
-import org.vanilladb.core.query.algebra.QueryTablePlan;
 import org.vanilladb.core.query.algebra.SelectPlan;
-// import org.vanilladb.core.query.algebra.TablePlan;
+import org.vanilladb.core.query.algebra.TablePlan;
 import org.vanilladb.core.query.algebra.materialize.GroupByPlan;
 import org.vanilladb.core.query.algebra.materialize.SortPlan;
 import org.vanilladb.core.query.parse.QueryData;
@@ -35,7 +34,7 @@ import org.vanilladb.core.storage.tx.Transaction;
  * The simplest, most naive query planner possible.
  */
 public class BasicQueryPlanner implements QueryPlanner {
-
+	private boolean is2V2PL = true;
 	/**
 	 * Creates a query plan as follows. It first takes the product of all tables
 	 * and views; it then selects on the predicate; and finally it projects on
@@ -43,6 +42,7 @@ public class BasicQueryPlanner implements QueryPlanner {
 	 */
 	@Override
 	public Plan createPlan(QueryData data, Transaction tx) {
+		if(is2V2PL){tx.use2V2PL();}
 		// Step 1: Create a plan for each mentioned table or view
 		List<Plan> plans = new ArrayList<Plan>();
 		for (String tblname : data.tables()) {
@@ -51,7 +51,7 @@ public class BasicQueryPlanner implements QueryPlanner {
 				plans.add(VanillaDb.newPlanner().createQueryPlan(viewdef, tx));
 			else
 				// MODIFIED: Replace TablePlan with QueryTablePlan
-				plans.add(new QueryTablePlan(tblname, tx));
+				plans.add(new TablePlan(tblname, tx, is2V2PL));
 		}
 		// Step 2: Create the product of all table plans
 		Plan p = plans.remove(0);

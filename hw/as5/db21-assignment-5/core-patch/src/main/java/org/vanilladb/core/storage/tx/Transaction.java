@@ -47,6 +47,8 @@ public class Transaction {
 	private long txNum;
 	private boolean readOnly;
 	// MODIFIED: Modified Code
+	// Does the transaction use 2V2PL or not?
+	private boolean is2V2PL = false;
 	// The private workspace that keeps the accessed records
 	private HashMap<RecordId, Constant> workspace = new HashMap<RecordId, Constant>();
 	// The oldVals records the original values before setting values.
@@ -187,6 +189,10 @@ public class Transaction {
 	}
 
 	// MODIFIED: Modified Code
+	public void use2V2PL(){
+		this.is2V2PL = true;
+	}
+
 	public HashMap<RecordId, Constant> workspace(){
 		return workspace;
 	}
@@ -224,6 +230,8 @@ public class Transaction {
 	}
 
 	private void certifyLog(){
+		if(!this.is2V2PL){return;}
+		
 		for(LogRecord l: logs){
 			LogSeqNum lsn = l.doLog ? recoveryMgr().certifyLogSetVal(l.blk, l.offset, l.oldVal, l.newVal) : null;
 			l.buffer.setVal(l.offset, l.newVal, this.txNum, lsn);

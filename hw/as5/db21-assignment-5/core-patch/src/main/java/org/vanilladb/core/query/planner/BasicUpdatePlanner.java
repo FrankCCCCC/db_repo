@@ -19,9 +19,8 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.vanilladb.core.query.algebra.Plan;
-import org.vanilladb.core.query.algebra.QueryTablePlan;
 import org.vanilladb.core.query.algebra.SelectPlan;
-// import org.vanilladb.core.query.algebra.TablePlan;
+import org.vanilladb.core.query.algebra.TablePlan;
 import org.vanilladb.core.query.algebra.UpdateScan;
 import org.vanilladb.core.query.parse.CreateIndexData;
 import org.vanilladb.core.query.parse.CreateTableData;
@@ -42,11 +41,14 @@ import org.vanilladb.core.storage.tx.Transaction;
  * @author sciore
  */
 public class BasicUpdatePlanner implements UpdatePlanner {
-
+	private boolean is2V2PL = true;
+	
 	@Override
 	public int executeDelete(DeleteData data, Transaction tx) {
 		// MODIFIED: Replace TablePlan with QueryTablePlan
-		Plan p = new QueryTablePlan(data.tableName(), tx);
+		if(is2V2PL){tx.use2V2PL();}
+		
+		Plan p = new TablePlan(data.tableName(), tx, is2V2PL);
 		p = new SelectPlan(p, data.pred());
 		UpdateScan us = (UpdateScan) p.open();
 		us.beforeFirst();
@@ -63,7 +65,9 @@ public class BasicUpdatePlanner implements UpdatePlanner {
 	@Override
 	public int executeModify(ModifyData data, Transaction tx) {
 		// MODIFIED: Replace TablePlan with QueryTablePlan
-		Plan p = new QueryTablePlan(data.tableName(), tx);
+		if(is2V2PL){tx.use2V2PL();}
+		
+		Plan p = new TablePlan(data.tableName(), tx, is2V2PL);
 		p = new SelectPlan(p, data.pred());
 		UpdateScan us = (UpdateScan) p.open();
 		us.beforeFirst();
@@ -82,7 +86,9 @@ public class BasicUpdatePlanner implements UpdatePlanner {
 	@Override
 	public int executeInsert(InsertData data, Transaction tx) {
 		// MODIFIED: Replace TablePlan with QueryTablePlan
-		Plan p = new QueryTablePlan(data.tableName(), tx);
+		if(is2V2PL){tx.use2V2PL();}
+		
+		Plan p = new TablePlan(data.tableName(), tx, is2V2PL);
 		UpdateScan us = (UpdateScan) p.open();
 		us.insert();
 		Iterator<Constant> iter = data.vals().iterator();

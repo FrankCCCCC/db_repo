@@ -50,6 +50,7 @@ public class RecordFile implements Record {
 	private long currentBlkNum;
 	private boolean doLog;
 	private boolean isBeforeFirsted;
+	private boolean is2V2PL;
 
 	/**
 	 * Constructs an object to manage a file of records. If the file does not
@@ -71,6 +72,25 @@ public class RecordFile implements Record {
 		this.doLog = doLog;
 		fileName = ti.fileName();
 		headerBlk = new BlockId(fileName, 0);
+		this.is2V2PL = false;
+	}
+
+	public RecordFile(TableInfo ti, Transaction tx, boolean doLog, boolean is2V2PL) {
+		this.ti = ti;
+		this.tx = tx;
+		this.doLog = doLog;
+		fileName = ti.fileName();
+		headerBlk = new BlockId(fileName, 0);
+		this.is2V2PL = is2V2PL;
+	}
+
+	public boolean is2V2PL(){
+		return is2V2PL;
+	}
+
+	public RecordFile use2V2PL(){
+		is2V2PL = true;
+		return this;
 	}
 
 	/**
@@ -369,7 +389,7 @@ public class RecordFile implements Record {
 			return false;
 		currentBlkNum = b;
 		BlockId blk = new BlockId(fileName, currentBlkNum);
-		rp = new RecordPage(blk, ti, tx, doLog);
+		rp = new RecordPage(blk, ti, tx, doLog, is2V2PL);
 		return true;
 	}
 

@@ -89,4 +89,8 @@ public class TableInfo {
 	public RecordFile open(Transaction tx, boolean doLog) {
 		return new RecordFile(this, tx, doLog);
 	}
+
+	public RecordFile open(Transaction tx, boolean doLog, boolean is2V2PL) {
+		return new RecordFile(this, tx, doLog, is2V2PL);
+	}
 }
