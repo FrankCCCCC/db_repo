@@ -38,7 +38,7 @@ public class BlockId implements Comparable<BlockId> {
 		this.fileName = fileName;
 		this.blkNum = blkNum;
 		// Optimization: Materialize the hash code
-		// Note: caching toString result does improve toString performance,
+		// MODIFIED: caching toString result does improve toString performance,
 		// but toString is actually rarely called. It also adds significant
 		// memory overhead to the system. So it would be better to leave
 		// it as what it is now.

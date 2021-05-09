@@ -90,7 +90,7 @@ Note that it is hard to see the effect of the optimization for `org.vanilladb.co
   - The experiments showing the performance difference between using traditional 2PL and 2V2PL under different parameters (at least adjusting 3 types of parameters)
   - Give a reasonable analysis of your experimental result (both the expected and the unexpected can be mentioned)
 
-Note: There is no strict limitation to the length of your report. Generally, a 2~3 pages report with some figures and tables is fine. **Remember to include all the group members' student IDs in your report.**
+MODIFIED: There is no strict limitation to the length of your report. Generally, a 2~3 pages report with some figures and tables is fine. **Remember to include all the group members' student IDs in your report.**
 
 ## Submission
 

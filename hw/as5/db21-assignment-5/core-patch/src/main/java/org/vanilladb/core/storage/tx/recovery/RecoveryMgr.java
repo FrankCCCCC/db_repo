@@ -149,6 +149,29 @@ public class RecoveryMgr implements TransactionLifecycleListener {
 			return null;
 	}
 
+	// MODIFIED: Modified Code
+	/**
+	 * Writes a set value record to the log.
+	 * 
+	 * @param buff
+	 *            the buffer containing the page
+	 * @param offset
+	 *            the offset of the value in the page
+	 * @param oldVal
+	 * 			  the value in the buffer originally
+	 * @param newVal
+	 *            the value to be written
+	 * @return the LSN of the log record, or -1 if updates to temporary files
+	 */
+	public LogSeqNum certifyLogSetVal(BlockId blk, int offset, Constant oldVal, Constant newVal) {
+		if (enableLogging) {
+			if (isTempBlock(blk))
+				return null;
+			return new SetValueRecord(txNum, blk, offset, oldVal, newVal).writeToLog();
+		} else
+			return null;
+	}
+
 	public LogSeqNum logLogicalStart() {
 		if (enableLogging) {
 			// Store logicalStartLSN inside the RecoveryMgr

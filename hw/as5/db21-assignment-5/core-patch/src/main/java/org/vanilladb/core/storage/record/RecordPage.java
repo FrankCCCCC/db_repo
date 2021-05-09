@@ -354,17 +354,9 @@ public class RecordPage implements Record {
 		if (!isTempTable())
 			tx.concurrencyMgr().readRecord(new RecordId(blk, currentSlot));
 		
+		// MODIFIED: Modified Code
 		// Cache to private workspace
-		RecordId target_record = new RecordId(blk, offset);
-		Constant workspce_val = tx.workspace().get(target_record);
-
-		if(workspce_val == null){
-			Constant val = currentBuff.getVal(offset, type);
-			tx.workspace().put(target_record, val);
-			return val;
-		}
-		
-		return workspce_val;
+		return tx.addGetVal(currentBuff, blk, offset, type);
 
 		// return currentBuff.getVal(offset, type);
 	}
@@ -374,13 +366,13 @@ public class RecordPage implements Record {
 			throw new UnsupportedOperationException();
 		if (!isTempTable())
 			tx.concurrencyMgr().modifyRecord(new RecordId(blk, currentSlot));
-		LogSeqNum lsn = doLog ? tx.recoveryMgr().logSetVal(currentBuff, offset, val)
-				: null;
-		currentBuff.setVal(offset, val, tx.getTransactionNumber(), lsn);
 
+		// LogSeqNum lsn = doLog ? tx.recoveryMgr().logSetVal(currentBuff, offset, val) : null;
+		// currentBuff.setVal(offset, val, tx.getTransactionNumber(), lsn);
+			
+		// MODIFIED: Modified Code
 		// Cache to private workspace
-		RecordId target_record = new RecordId(blk, offset);
-		tx.workspace().put(target_record, val);
+		tx.addSetVal(currentBuff, blk, offset, val, doLog);
 	}
 
 	private boolean isTempTable() {

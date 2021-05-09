@@ -23,7 +23,11 @@ import java.util.logging.Logger;
 
 import org.vanilladb.core.server.VanillaDb;
 import org.vanilladb.core.sql.Constant;
+import org.vanilladb.core.sql.Type;
+import org.vanilladb.core.storage.buffer.Buffer;
 import org.vanilladb.core.storage.buffer.BufferMgr;
+import org.vanilladb.core.storage.file.BlockId;
+import org.vanilladb.core.storage.log.LogSeqNum;
 import org.vanilladb.core.storage.record.RecordId;
 import org.vanilladb.core.storage.tx.concurrency.ConcurrencyMgr;
 import org.vanilladb.core.storage.tx.recovery.RecoveryMgr;
@@ -42,7 +46,32 @@ public class Transaction {
 	private List<TransactionLifecycleListener> lifecycleListeners;
 	private long txNum;
 	private boolean readOnly;
+	// MODIFIED: Modified Code
+	// The private workspace that keeps the accessed records
 	private HashMap<RecordId, Constant> workspace = new HashMap<RecordId, Constant>();
+	// The oldVals records the original values before setting values.
+	private HashMap<RecordId, Constant> oldVals = new HashMap<RecordId, Constant>();
+	private HashMap<RecordId, Buffer> modifiedBuffers = new HashMap<RecordId, Buffer>();
+
+	class LogRecord{
+		Buffer buffer;
+		BlockId blk;
+		int offset;
+		Constant oldVal;
+		Constant newVal;
+		boolean doLog;
+
+		LogRecord(Buffer currentBuff, BlockId blk, int offset, Constant oldVal, Constant newVal, boolean doLog){
+			this.buffer = currentBuff;
+			this.blk = blk;
+			this.offset = offset;
+			this.oldVal = oldVal;
+			this.newVal = newVal;
+			this.doLog = doLog;
+		}
+	}
+
+	private LinkedList<LogRecord> logs = new LinkedList<LogRecord>();
 
 	/**
 	 * Creates a new transaction and associates it with a recovery manager, a
@@ -105,6 +134,8 @@ public class Transaction {
 	 * locks, and unpins any pinned blocks.
 	 */
 	public void commit() {
+		certifyLog();
+
 		for (TransactionLifecycleListener l : lifecycleListeners)
 			l.onTxCommit(this);
 
@@ -155,7 +186,47 @@ public class Transaction {
 		return bufferMgr;
 	}
 
+	// MODIFIED: Modified Code
 	public HashMap<RecordId, Constant> workspace(){
 		return workspace;
+	}
+
+	public HashMap<RecordId, Constant> oldVals(){
+		return oldVals;
+	}
+
+	public HashMap<RecordId, Buffer> modifiedBuffers(){
+		return modifiedBuffers;
+	}
+
+	public Constant addGetVal(Buffer currentBuff, BlockId blk, int offset, Type type){
+		RecordId target_record = new RecordId(blk, offset);
+		Constant workspce_val = workspace.get(target_record);
+
+		if(workspce_val == null){
+			Constant val = currentBuff.getVal(offset, type);
+			workspace.put(target_record, val);
+			return val;
+		}
+		
+		return workspce_val;
+	}
+
+	public void addSetVal(Buffer currentBuff, BlockId blk, int offset, Constant val, boolean doLog){
+		RecordId target_record = new RecordId(blk, offset);
+
+		workspace.put(target_record, val);
+		// oldVals.putIfAbsent(target_record, val);
+		// modifiedBuffers.put(target_record, currentBuff);
+		
+		LogRecord log = new LogRecord(currentBuff, blk, offset, currentBuff.getVal(offset, val.getType()), val, doLog);
+		logs.add(log);
+	}
+
+	private void certifyLog(){
+		for(LogRecord l: logs){
+			LogSeqNum lsn = l.doLog ? recoveryMgr().certifyLogSetVal(l.blk, l.offset, l.oldVal, l.newVal) : null;
+			l.buffer.setVal(l.offset, l.newVal, this.txNum, lsn);
+		}
 	}
 }

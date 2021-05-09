@@ -22,8 +22,9 @@ import org.vanilladb.core.query.algebra.ExplainPlan;
 import org.vanilladb.core.query.algebra.Plan;
 import org.vanilladb.core.query.algebra.ProductPlan;
 import org.vanilladb.core.query.algebra.ProjectPlan;
+import org.vanilladb.core.query.algebra.QueryTablePlan;
 import org.vanilladb.core.query.algebra.SelectPlan;
-import org.vanilladb.core.query.algebra.TablePlan;
+// import org.vanilladb.core.query.algebra.TablePlan;
 import org.vanilladb.core.query.algebra.materialize.GroupByPlan;
 import org.vanilladb.core.query.algebra.materialize.SortPlan;
 import org.vanilladb.core.query.parse.QueryData;
@@ -49,7 +50,8 @@ public class BasicQueryPlanner implements QueryPlanner {
 			if (viewdef != null)
 				plans.add(VanillaDb.newPlanner().createQueryPlan(viewdef, tx));
 			else
-				plans.add(new TablePlan(tblname, tx));
+				// MODIFIED: Replace TablePlan with QueryTablePlan
+				plans.add(new QueryTablePlan(tblname, tx));
 		}
 		// Step 2: Create the product of all table plans
 		Plan p = plans.remove(0);

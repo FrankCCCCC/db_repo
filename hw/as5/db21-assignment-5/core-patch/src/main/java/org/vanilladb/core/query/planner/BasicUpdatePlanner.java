@@ -19,8 +19,9 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.vanilladb.core.query.algebra.Plan;
+import org.vanilladb.core.query.algebra.QueryTablePlan;
 import org.vanilladb.core.query.algebra.SelectPlan;
-import org.vanilladb.core.query.algebra.TablePlan;
+// import org.vanilladb.core.query.algebra.TablePlan;
 import org.vanilladb.core.query.algebra.UpdateScan;
 import org.vanilladb.core.query.parse.CreateIndexData;
 import org.vanilladb.core.query.parse.CreateTableData;
@@ -44,7 +45,8 @@ public class BasicUpdatePlanner implements UpdatePlanner {
 
 	@Override
 	public int executeDelete(DeleteData data, Transaction tx) {
-		Plan p = new TablePlan(data.tableName(), tx);
+		// MODIFIED: Replace TablePlan with QueryTablePlan
+		Plan p = new QueryTablePlan(data.tableName(), tx);
 		p = new SelectPlan(p, data.pred());
 		UpdateScan us = (UpdateScan) p.open();
 		us.beforeFirst();
@@ -60,7 +62,8 @@ public class BasicUpdatePlanner implements UpdatePlanner {
 
 	@Override
 	public int executeModify(ModifyData data, Transaction tx) {
-		Plan p = new TablePlan(data.tableName(), tx);
+		// MODIFIED: Replace TablePlan with QueryTablePlan
+		Plan p = new QueryTablePlan(data.tableName(), tx);
 		p = new SelectPlan(p, data.pred());
 		UpdateScan us = (UpdateScan) p.open();
 		us.beforeFirst();
@@ -78,7 +81,8 @@ public class BasicUpdatePlanner implements UpdatePlanner {
 
 	@Override
 	public int executeInsert(InsertData data, Transaction tx) {
-		Plan p = new TablePlan(data.tableName(), tx);
+		// MODIFIED: Replace TablePlan with QueryTablePlan
+		Plan p = new QueryTablePlan(data.tableName(), tx);
 		UpdateScan us = (UpdateScan) p.open();
 		us.insert();
 		Iterator<Constant> iter = data.vals().iterator();
