@@ -44,7 +44,7 @@ import org.vanilladb.core.util.CoreProperties;
 class LockTable {
 	private static final long MAX_TIME;
 	private static final long EPSILON;
-	final static int IS_LOCK = 0, IX_LOCK = 1, S_LOCK = 2, SIX_LOCK = 3, X_LOCK = 4;
+	final static int IS_LOCK = 0, IX_LOCK = 1, S_LOCK = 2, SIX_LOCK = 3, X_LOCK = 4, C_LOCK = 5;
 
 	static {
 		MAX_TIME = CoreProperties.getLoader().getPropertyAsLong(LockTable.class.getName() + ".MAX_TIME", 10000);
@@ -54,7 +54,7 @@ class LockTable {
 	class Lockers {
 		Set<Long> sLockers, ixLockers, isLockers, requestSet;
 		// only one tx can hold xLock(sixLock) on single item
-		long sixLocker, xLocker;
+		long sixLocker, xLocker, cLocker;
 		static final long NONE = -1; // for sixLocker, xLocker
 
 		Lockers() {
@@ -63,6 +63,7 @@ class LockTable {
 			isLockers = new HashSet<Long>();
 			sixLocker = NONE;
 			xLocker = NONE;
+			cLocker = NONE;
 			requestSet = new HashSet<Long>();
 		}
 
@@ -118,7 +119,7 @@ class LockTable {
 	}
 
 	private void avoidDeadlock(Lockers lks, long txNum, int lockType) throws LockAbortException {
-		// IS_LOCK = 0, IX_LOCK = 1, S_LOCK = 2, SIX_LOCK = 3, X_LOCK = 4
+		// IS_LOCK = 0, IX_LOCK = 1, S_LOCK = 2, SIX_LOCK = 3, X_LOCK = 4, C_LOCK = 5
 
 		if (txnsToBeAborted.contains(txNum))
 			throw new LockAbortException("abort tx." + txNum + " for preventing deadlock");
@@ -151,6 +152,9 @@ class LockTable {
 		}
 		if (lks.xLocker > txNum) {
 			toBeAbortedAndNotified(lks.xLocker);
+		}
+		if (lks.cLocker > txNum) {
+			toBeAbortedAndNotified(lks.cLocker);
 		}
 	}
 
@@ -230,6 +234,45 @@ class LockTable {
 				if (!xLockable(lks, txNum))
 					throw new LockAbortException();
 				lks.xLocker = txNum;
+				getObjectSet(txNum).add(obj);
+			} catch (InterruptedException e) {
+				throw new LockAbortException();
+			}
+		}
+		txWaitMap.remove(txNum);
+	}
+
+	/**
+	 * Grants an clock on the specified item. If any conflict lock exists when the
+	 * method is called, then the calling thread will be placed on a wait list until
+	 * the lock is released. If the thread remains on the wait list for a certain
+	 * amount of time, then an exception is thrown.
+	 * 
+	 * @param obj   a lockable item
+	 * @param txNum a transaction number
+	 * 
+	 */
+	void cLock(Object obj, long txNum) {
+		Object anchor = getAnchor(obj);
+		txWaitMap.put(txNum, anchor);
+		synchronized (anchor) {
+			Lockers lks = prepareLockers(obj);
+
+			if (hasCLock(lks, txNum))
+				return;
+
+			try {
+				long timestamp = System.currentTimeMillis();
+				while (!cLockable(lks, txNum) && !waitingTooLong(timestamp)) {
+					avoidDeadlock(lks, txNum, C_LOCK);
+					lks.requestSet.add(txNum);
+
+					anchor.wait(MAX_TIME);
+					lks.requestSet.remove(txNum);
+				}
+				if (!cLockable(lks, txNum))
+					throw new LockAbortException();
+				lks.cLocker = txNum;
 				getObjectSet(txNum).add(obj);
 			} catch (InterruptedException e) {
 				throw new LockAbortException();
@@ -506,6 +549,10 @@ class LockTable {
 		return lks != null && lks.xLocker != -1;
 	}
 
+	private boolean cLocked(Lockers lks) {
+		return lks != null && lks.cLocker != -1;
+	}
+
 	private boolean sixLocked(Lockers lks) {
 		return lks != null && lks.sixLocker != -1;
 	}
@@ -528,6 +575,10 @@ class LockTable {
 
 	private boolean hasXLock(Lockers lks, long txNUm) {
 		return lks != null && lks.xLocker == txNUm;
+	}
+
+	private boolean hasCLock(Lockers lks, long txNUm) {
+		return lks != null && lks.cLocker == txNUm;
 	}
 
 	private boolean hasSixLock(Lockers lks, long txNum) {
@@ -567,6 +618,15 @@ class LockTable {
 		return (!sLocked(lks) || isTheOnlySLocker(lks, txNum)) && (!sixLocked(lks) || hasSixLock(lks, txNum))
 				&& (!ixLocked(lks) || isTheOnlyIxLocker(lks, txNum))
 				&& (!isLocked(lks) || isTheOnlyIsLocker(lks, txNum)) && (!xLocked(lks) || hasXLock(lks, txNum));
+	}
+
+	private boolean cLockable(Lockers lks, long txNum) {
+		return (!sLocked(lks) || isTheOnlySLocker(lks, txNum)) 
+				&& (!sixLocked(lks) || hasSixLock(lks, txNum))
+				&& (!ixLocked(lks) || isTheOnlyIxLocker(lks, txNum))
+				&& (!isLocked(lks) || isTheOnlyIsLocker(lks, txNum)) 
+				&& (!xLocked(lks) || hasXLock(lks, txNum))
+				&& (!cLocked(lks) || hasCLock(lks, txNum));
 	}
 
 	private boolean sixLockable(Lockers lks, long txNum) {
