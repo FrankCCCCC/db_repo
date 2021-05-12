@@ -109,7 +109,7 @@ public class VanillaDb {
 		spFactory = factory;
 
 		/*
-		 * MODIFIED: We read properties file here before, but we moved it to a
+		 * Note: We read properties file here before, but we moved it to a
 		 * utility class, PropertiesFetcher, for safety reason.
 		 */
 

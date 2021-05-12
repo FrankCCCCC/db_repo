@@ -103,7 +103,7 @@ class BufferPoolMgr {
 				// Choose Unpinned Buffer
 				int lastReplacedBuff = this.lastReplacedBuff;
 				int currBlk = (lastReplacedBuff + 1) % bufferPool.length;
-				// MODIFIED: this check will fail if there is only one buffer
+				// Note: this check will fail if there is only one buffer
 				while (currBlk != lastReplacedBuff) {
 					buff = bufferPool[currBlk];
 					
