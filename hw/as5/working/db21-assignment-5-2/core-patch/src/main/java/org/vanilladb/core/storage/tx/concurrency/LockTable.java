@@ -610,14 +610,17 @@ class LockTable {
 	 */
 
 	private boolean sLockable(Lockers lks, long txNum) {
-		return (!xLocked(lks) || hasXLock(lks, txNum)) && (!sixLocked(lks) || hasSixLock(lks, txNum))
+		return (!xLocked(lks) || hasXLock(lks, txNum)) 
+				&& (!sixLocked(lks) || hasSixLock(lks, txNum))
 				&& (!ixLocked(lks) || isTheOnlyIxLocker(lks, txNum));
 	}
 
 	private boolean xLockable(Lockers lks, long txNum) {
-		return (!sLocked(lks) || isTheOnlySLocker(lks, txNum)) && (!sixLocked(lks) || hasSixLock(lks, txNum))
+		return (!sLocked(lks) || isTheOnlySLocker(lks, txNum)) 
+				&& (!sixLocked(lks) || hasSixLock(lks, txNum))
 				&& (!ixLocked(lks) || isTheOnlyIxLocker(lks, txNum))
-				&& (!isLocked(lks) || isTheOnlyIsLocker(lks, txNum)) && (!xLocked(lks) || hasXLock(lks, txNum));
+				&& (!isLocked(lks) || isTheOnlyIsLocker(lks, txNum)) 
+				&& (!xLocked(lks) || hasXLock(lks, txNum));
 	}
 
 	private boolean cLockable(Lockers lks, long txNum) {
@@ -630,12 +633,15 @@ class LockTable {
 	}
 
 	private boolean sixLockable(Lockers lks, long txNum) {
-		return (!sixLocked(lks) || hasSixLock(lks, txNum)) && (!ixLocked(lks) || isTheOnlyIxLocker(lks, txNum))
-				&& (!sLocked(lks) || isTheOnlySLocker(lks, txNum)) && (!xLocked(lks) || hasXLock(lks, txNum));
+		return (!sixLocked(lks) || hasSixLock(lks, txNum)) 
+				&& (!ixLocked(lks) || isTheOnlyIxLocker(lks, txNum))
+				&& (!sLocked(lks) || isTheOnlySLocker(lks, txNum)) 
+				&& (!xLocked(lks) || hasXLock(lks, txNum));
 	}
 
 	private boolean ixLockable(Lockers lks, long txNum) {
-		return (!sLocked(lks) || isTheOnlySLocker(lks, txNum)) && (!sixLocked(lks) || hasSixLock(lks, txNum))
+		return (!sLocked(lks) || isTheOnlySLocker(lks, txNum)) 
+				&& (!sixLocked(lks) || hasSixLock(lks, txNum))
 				&& (!xLocked(lks) || hasXLock(lks, txNum));
 	}
 
