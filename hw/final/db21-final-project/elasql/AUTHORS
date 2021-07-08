@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 VanillaCore is written by:
   Shan-Hung Wu <shwu@cs.nthu.edu.tw>
   Tsai-Yu Feng <tyfeng@netdb.cs.nthu.edu.tw>
@@ -6,4 +7,14 @@ VanillaCore is written by:
   Yu-Shan Lin <yslin@netdb.cs.nthu.edu.tw>
   Ching Tsai <ctsai@netdb.cs.nthu.edu.tw>
   Tz-Yu Lin <tylin@datalab.cs.nthu.edu.tw>
+=======
+VanillaCore is written by:
+  Shan-Hung Wu <shwu@cs.nthu.edu.tw>
+  Tsai-Yu Feng <tyfeng@netdb.cs.nthu.edu.tw>
+  Meng-Kai Liao <mkliao@netdb.cs.nthu.edu.tw>
+  Shao-Kan Pi <skpi@netdb.cs.nthu.edu.tw>
+  Yu-Shan Lin <yslin@netdb.cs.nthu.edu.tw>
+  Ching Tsai <ctsai@netdb.cs.nthu.edu.tw>
+  Tz-Yu Lin <tylin@datalab.cs.nthu.edu.tw>
+>>>>>>> d2c99998475a1754675654f3bd7ea496db923224
   Yun-Sheng Chang <yschang@datalab.cs.nthu.edu.tw>

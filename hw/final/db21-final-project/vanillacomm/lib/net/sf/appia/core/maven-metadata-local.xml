@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>net.sf.appia</groupId>
@@ -10,3 +11,17 @@
     <lastUpdated>20210529062056</lastUpdated>
   </versioning>
 </metadata>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>net.sf.appia</groupId>
+  <artifactId>core</artifactId>
+  <versioning>
+    <release>4.1.2-vanilladb-2021-final-proj</release>
+    <versions>
+      <version>4.1.2-vanilladb-2021-final-proj</version>
+    </versions>
+    <lastUpdated>20210529062056</lastUpdated>
+  </versioning>
+</metadata>
+>>>>>>> d2c99998475a1754675654f3bd7ea496db923224

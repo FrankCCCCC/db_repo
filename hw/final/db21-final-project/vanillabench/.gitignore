@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 ### Eclipse ###
 .settings/
@@ -8,3 +9,15 @@ target/
 
 ### Others ###
 design
+=======
+
+### Eclipse ###
+.settings/
+.recommenders
+.classpath
+.project
+target/
+
+### Others ###
+design
+>>>>>>> d2c99998475a1754675654f3bd7ea496db923224

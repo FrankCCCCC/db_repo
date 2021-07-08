@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 .metadata/
 /**/target/
 /**/.settings/
 
 # Eclipse project
 /**/.classpath
+=======
+.metadata/
+/**/target/
+/**/.settings/
+
+# Eclipse project
+/**/.classpath
+>>>>>>> d2c99998475a1754675654f3bd7ea496db923224
 /**/.project
