@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+language: java
+sudo: required
+branches:
+  only:
+  - master
+before_script:
+  - ulimit -s unlimited
+script: mvn test
+=======
+language: java
+sudo: required
+branches:
+  only:
+  - master
+before_script:
+  - ulimit -s unlimited
+script: mvn test
+>>>>>>> d2c99998475a1754675654f3bd7ea496db923224

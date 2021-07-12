@@ -1,0 +1,111 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Bench Client 1",
+            "request": "launch",
+            "mainClass": "org.vanilladb.bench.App",
+            "projectName": "bench",
+            "cwd": "${workspaceFolder}/bench",
+            "args": "1",
+            "vmArgs": "-Djava.util.logging.config.file=target/classes/java/util/logging/logging.properties -Dorg.vanilladb.bench.config.file=target/classes/org/vanilladb/bench/vanillabench.properties -Dorg.vanilladb.core.config.file=target/classes/org/vanilladb/core/vanilladb.properties"
+        },
+        {
+            "type": "java",
+            "name": "Launch Bench Client 2",
+            "request": "launch",
+            "mainClass": "org.vanilladb.bench.App",
+            "projectName": "bench",
+            "cwd": "${workspaceFolder}/bench",
+            "args": "2",
+            "vmArgs": "-Djava.util.logging.config.file=target/classes/java/util/logging/logging.properties -Dorg.vanilladb.bench.config.file=target/classes/org/vanilladb/bench/vanillabench.properties -Dorg.vanilladb.core.config.file=target/classes/org/vanilladb/core/vanilladb.properties"
+        },
+        {
+            "type": "java",
+            "name": "Launch TpccValueGenerator",
+            "request": "launch",
+            "mainClass": "org.vanilladb.bench.benchmarks.tpcc.TpccValueGenerator",
+            "projectName": "bench"
+        },
+        {
+            "type": "java",
+            "name": "Launch Bench Server",
+            "request": "launch",
+            "mainClass": "org.vanilladb.bench.server.StartUp",
+            "projectName": "bench",
+            "cwd": "${workspaceFolder}/bench",
+            "args": "HiDB",
+            "vmArgs": "-Djava.util.logging.config.file=target/classes/java/util/logging/logging.properties -Dorg.vanilladb.bench.config.file=target/classes/org/vanilladb/bench/vanillabench.properties -Dorg.vanilladb.core.config.file=target/classes/org/vanilladb/core/vanilladb.properties",
+        },
+        {
+            "type": "java",
+            "name": "Launch DB",
+            "request": "launch",
+            "mainClass": "org.vanilladb.core.server.StartUp",
+            "projectName": "core-patch",
+            "cwd": "${workspaceFolder}/core-patch",
+            "args": "HiDB",
+            "vmArgs": "-Djava.util.logging.config.file=target/classes/java/util/logging/logging.properties -Dorg.vanilladb.core.config.file=target/classes/org/vanilladb/core/vanilladb.properties"
+        },
+        {
+            "type": "java",
+            "name": "Launch ConsoleSQLInterpreter",
+            "request": "launch",
+            "mainClass": "org.vanilladb.core.util.ConsoleSQLInterpreter",
+            "projectName": "core-patch",
+            "cwd": "${workspaceFolder}/core-patch",
+            "vmArgs": "-Djava.util.logging.config.file=target/classes/java/util/logging/logging.properties -Dorg.vanilladb.bench.config.file=target/classes/org/vanilladb/bench/vanillabench.properties -Dorg.vanilladb.core.config.file=target/classes/org/vanilladb/core/vanilladb.properties"
+        },
+        {
+            "type": "java",
+            "name": "Launch LogFileTranslator",
+            "request": "launch",
+            "mainClass": "org.vanilladb.core.util.LogFileTranslator",
+            "projectName": "core-patch"
+        },
+        {
+            "type": "java",
+            "name": "Launch ElaSQL Bench Client",
+            "request": "launch",
+            "mainClass": "org.elasql.bench.App",
+            "projectName": "elasql",
+            "cwd": "${workspaceFolder}/elasql",
+            "args": "HiDB",
+            "vmArgs": "-Djava.util.logging.config.file=target/classes/java/util/logging/logging.properties -Dorg.vanilladb.bench.config.file=target/classes/org/vanilladb/bench/vanillabench.properties -Dorg.vanilladb.core.config.file=target/classes/org/vanilladb/core/vanilladb.properties",
+        },
+        {
+            "type": "java",
+            "name": "Launch ElaSQL Bench Server",
+            "request": "launch",
+            "mainClass": "org.elasql.bench.server.StartUp",
+            "projectName": "elasql",
+            "cwd": "${workspaceFolder}/elasql",
+            "args": "HiDB",
+            "vmArgs": "-Djava.util.logging.config.file=target/classes/java/util/logging/logging.properties -Dorg.vanilladb.bench.config.file=target/classes/org/vanilladb/bench/vanillabench.properties -Dorg.vanilladb.core.config.file=target/classes/org/vanilladb/core/vanilladb.properties",
+        }
+    ],
+    "compounds": [
+        {
+            "name": "LoadTestBed",
+            "configurations": ["Launch Bench Server", "Launch Bench Client 1"],
+        },
+        {
+            "name": "RunBenchmark",
+            "configurations": ["Launch Bench Server", "Launch Bench Client 2"],
+        },
+        {
+            "name": "RunSQL",
+            "configurations": ["Launch DB", "Launch ConsoleSQLInterpreter"],
+        }
+    ]
+}

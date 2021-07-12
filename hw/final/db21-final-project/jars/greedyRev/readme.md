@@ -1,0 +1,1 @@
+# Greedy with Dirty-Read (AgtB = 1, AwtB = -1) Reverse List
